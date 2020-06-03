@@ -79,10 +79,10 @@
         "title" : "h5",
         "domain" : "h5",
         "router" : {
-            "base" : ""
+            "base" : "/h5/"
         },
         "devServer" : {
-            "https" : true
+            "https" : false
         }
     }
 }

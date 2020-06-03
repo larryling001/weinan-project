@@ -6,11 +6,11 @@
 				<view class="top flex flex-j-bw">
 					<view class="no-box">
 						<view class="no flex flex-j-c flex-a-c text-bold">
-							NO.23
+							No.{{info.dataReserveTw}}
 						</view>
 					</view>
 					<view class="avatar">
-						<image src="../../static/logo.png" mode=""></image>
+						<image :src="info.headPortrait" mode=""></image>
 					</view>
 				</view>
 				<view class="main">
@@ -20,7 +20,7 @@
 								姓名
 							</view>
 							<view class="contnet">
-								张前民
+								{{info.userName}}
 							</view>
 						</view>
 						<view class="col">
@@ -28,7 +28,7 @@
 								身份类别
 							</view>
 							<view class="contnet">
-								贫困户/危改户/ 异地搬迁户
+								{{info.poor?'贫困户':''}}{{info.poor&&info.criticalReform?'/':''}}{{info.criticalReform?'危改户':''}}{{info.criticalReform&&info.move?'/':''}}{{info.move?'异地搬迁户':''}}
 							</view>
 						</view>
 					</view>
@@ -38,7 +38,7 @@
 								市
 							</view>
 							<view class="contnet">
-								西安市
+								{{info.city}}
 							</view>
 						</view>
 						<view class="col">
@@ -46,7 +46,7 @@
 								区县
 							</view>
 							<view class="contnet">
-								雁塔区
+								{{info.county}}
 							</view>
 						</view>
 					</view>
@@ -56,7 +56,7 @@
 								乡镇
 							</view>
 							<view class="contnet">
-								鱼化寨
+								{{info.township}}
 							</view>
 						</view>
 						<view class="col">
@@ -64,7 +64,7 @@
 								村民委员会
 							</view>
 							<view class="contnet">
-								鱼化寨村委
+								{{info.villageCommittee}}
 							</view>
 						</view>
 					</view>
@@ -75,8 +75,7 @@
 					政策依据
 				</view>
 				<view class="policy-content">
-					2016年,经XXXX认定,为建档立卡贫困户；
-					2017年,经XXXX认定,享受危房改造政策
+					{{info.dataReserveO?info.dataReserveO:'暂无依据'}}
 				</view>
 			</view>
 			<view class="show-more flex flex-j-c flex-a-c" @click="toLogin" v-if="!isLogin">
@@ -84,7 +83,7 @@
 			</view>
 			<view class="more-info" v-if="isLogin">
 				<view class="tag-bar flex flex-a-c flex-j-ba">
-					<view class="item" v-for="(item,index) in tagbarList" :key="index" @click="handleChange(index)">
+					<view class="item" v-for="(item,index) in tagbarList" v-if="item.show" :key="index" @click="handleChange(index)">
 						<view :class="index==tagbarIndex?'color-checked':''">{{item.title}}</view>
 						<view :class="['block',index==tagbarIndex?'block-checked':'']"></view>
 					</view>
@@ -100,7 +99,7 @@
 									贫困属性
 								</view>
 								<view class="contnet">
-									特等贫困
+									{{moreInfo.pKpersExtendList[0].pAttribute?moreInfo.pKpersExtendList[0].pAttribute:'无'}}
 								</view>
 							</view>
 							<view class="col">
@@ -108,7 +107,7 @@
 									致贫原因
 								</view>
 								<view class="contnet">
-									重大疾病
+									{{moreInfo.pKpersExtendList[0].pReason?moreInfo.pKpersExtendList[0].pReason:'无'}}
 								</view>
 							</view>
 						</view>
@@ -118,7 +117,7 @@
 									脱贫状态
 								</view>
 								<view class="contnet">
-									已脱贫
+									{{moreInfo.pKpersExtendList[0].pStatus?moreInfo.pKpersExtendList[0].pStatus:'无'}}
 								</view>
 							</view>
 							<view class="col">
@@ -126,7 +125,7 @@
 									脱贫年度
 								</view>
 								<view class="contnet">
-									2020年
+									{{moreInfo.pKpersExtendList[0].pTime?moreInfo.pKpersExtendList[0].pTime:'无'}}
 								</view>
 							</view>
 						</view>
@@ -134,29 +133,29 @@
 					<view class="remark-box">
 						<view class="s-title">说明</view>
 						<view class="title">
-							建档立卡贫困户：安全住房面积XXXX平
+							{{moreInfo.pKpersExtendList[0].pRemarks?moreInfo.pKpersExtendList[0].pRemarks:'无'}}
 						</view>
 					</view>
 					<view class="img-box">
 						<view class="s-title">住房</view>
 						<view class="title">前</view>
-						<image class="img" src="../../static/top.png"></image>
+						<image class="img" :src="baseUrl+item.url" v-if="item.type=='PK-ZF-01'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image>
 						<view class="title" style="margin-top: 40upx;">后</view>
-						<image class="img" src="../../static/top.png"></image>
+						<image class="img" :src="baseUrl+item.url" v-if="item.type=='PK-ZF-02'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image>
 					</view>
 					<view class="img-box">
 						<view class="s-title">厨房</view>
 						<view class="title">前</view>
-						<image class="img" src="../../static/top.png"></image>
+						<image class="img" :src="baseUrl+item.url" v-if="item.type=='PK-CF-01'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image>
 						<view class="title" style="margin-top: 40upx;">后</view>
-						<image class="img" src="../../static/top.png"></image>
+						<image class="img" :src="baseUrl+item.url" v-if="item.type=='PK-CF-02'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image>
 					</view>
 					<view class="img-box">
 						<view class="s-title">卫生间</view>
 						<view class="title">前</view>
-						<image class="img" src="../../static/top.png"></image>
+						<image class="img" :src="baseUrl+item.url" v-if="item.type=='PK-WS-01'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image>
 						<view class="title" style="margin-top: 40upx;">后</view>
-						<image class="img" src="../../static/top.png"></image>
+						<image class="img" :src="baseUrl+item.url" v-if="item.type=='PK-WS-02'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image>
 					</view>
 				</view>
 				<view class="poor-critical-offsite" v-if="tagbarIndex==1">
@@ -170,7 +169,7 @@
 									改造原因
 								</view>
 								<view class="contnet">
-									特等贫困
+									{{moreInfo.wGpersExtendList[0].gReason?moreInfo.wGpersExtendList[0].gReason:'无'}}
 								</view>
 							</view>
 							<view class="col">
@@ -178,7 +177,7 @@
 									列入计划的年度
 								</view>
 								<view class="contnet">
-									重大疾病
+									{{moreInfo.wGpersExtendList[0].gPlanTime?moreInfo.wGpersExtendList[0].gPlanTime:'无'}}
 								</view>
 							</view>
 						</view>
@@ -188,7 +187,7 @@
 									资金补助类型
 								</view>
 								<view class="contnet">
-									已脱贫
+									{{moreInfo.wGpersExtendList[0].gCapitalType?moreInfo.wGpersExtendList[0].gCapitalType:'无'}}
 								</view>
 							</view>
 							<view class="col">
@@ -196,7 +195,7 @@
 									改造状态
 								</view>
 								<view class="contnet">
-									2020年
+									{{moreInfo.wGpersExtendList[0].gTransStatus?moreInfo.wGpersExtendList[0].gTransStatus:'无'}}
 								</view>
 							</view>
 						</view>
@@ -204,45 +203,45 @@
 					<view class="remark-box">
 						<view class="s-title">说明</view>
 						<view class="title">
-							危改户：危改房D级新建XXXX平
+							{{moreInfo.wGpersExtendList[0].gSRemarks?moreInfo.wGpersExtendList[0].gSRemarks:'无'}}
 						</view>
 					</view>
 					<view class="img-box">
 						<view class="s-title">住房</view>
 						<view class="title">前</view>
-						<image class="img" src="../../static/top.png"></image>
+						<image class="img" :src="baseUrl+item.url" v-if="item.type=='WG-ZF-01'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image>
 						<view class="title" style="margin-top: 40upx;">后</view>
-						<image class="img" src="../../static/top.png"></image>
+						<image class="img" :src="baseUrl+item.url" v-if="item.type=='WG-ZF-02'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image>
 					</view>
 					<view class="img-box">
 						<view class="s-title">厨房</view>
 						<view class="title">前</view>
-						<image class="img" src="../../static/top.png" @click="handlePreview"></image>
+						<image class="img" :src="baseUrl+item.url" v-if="item.type=='WG-CF-01'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image>
 						<view class="title" style="margin-top: 40upx;">后</view>
-						<image class="img" src="../../static/top.png"></image>
+						<image class="img" :src="baseUrl+item.url" v-if="item.type=='WG-CF-02'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image>
 					</view>
 					<view class="img-box">
 						<view class="s-title">卫生间</view>
 						<view class="title">前</view>
-						<image class="img" src="../../static/top.png"></image>
+						<image class="img" :src="baseUrl+item.url" v-if="item.type=='WG-WS-01'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image>
 						<view class="title" style="margin-top: 40upx;">后</view>
-						<image class="img" src="../../static/top.png"></image>
+						<image class="img" :src="baseUrl+item.url" v-if="item.type=='WG-WS-02'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image>
 					</view>
 				</view>
 				<view class="poor-critical-offsite" v-if="tagbarIndex==2">
 					<view class="remark-box">
 						<view class="s-title">说明</view>
 						<view class="title">
-							异地搬迁户：异地搬迁户XXXX户
+							{{moreInfo.yBpersExtendList[0].bSRemarks?moreInfo.yBpersExtendList[0].bSRemarks:'无'}}
 						</view>
 					</view>
 					<view class="img-box">
 						<view class="s-title">搬迁前</view>
-						<image class="img" src="../../static/top.png"></image>
+						<image class="img" :src="baseUrl+item.url" v-if="item.type=='YB—01'" v-for="(item,index) in moreInfo.yBpersExtendList[0].persMaterialList" :key="index"></image>
 					</view>
 					<view class="img-box">
 						<view class="s-title">搬迁后</view>
-						<image class="img" src="../../static/top.png"></image>
+						<image class="img" :src="baseUrl+item.url" v-if="item.type=='YB—02'" v-for="(item,index) in moreInfo.yBpersExtendList[0].persMaterialList" :key="index"></image>
 					</view>
 				</view>
 			</view>
@@ -256,11 +255,11 @@
 				</view>
 				<view class="login-item flex flex-a-c">
 					<image class="icon" src="../../static/usercenter.png" mode=""></image>
-					<input class="input" placeholder-class="placeholder-input" type="text" value="" placeholder="请输入账号" />
+					<input class="input" v-model="user" placeholder-class="placeholder-input" type="text" value="" placeholder="请输入账号" />
 				</view>
 				<view class="login-item flex flex-a-c" style="margin-top: 60upx;">
 					<image class="icon" src="../../static/mima.png" mode=""></image>
-					<input class="input" type="password" placeholder-class="placeholder-input" value="" placeholder="请输入密码" />
+					<input class="input" v-model="password" type="password" placeholder-class="placeholder-input" value="" placeholder="请输入密码" />
 				</view>
 				<view class="login-btn flex flex-j-c flex-a-c" @click="login">
 					确认登录
@@ -274,6 +273,8 @@
 </template>
 
 <script>
+	import {apps} from '../../utils/services.js'
+	import {baseUrl}from '../../utils/request.js'
 	export default {
 		data() {
 			return {
@@ -283,41 +284,164 @@
 				tagbarIndex: 0,
 				tagbarList: [{
 						title: '贫困户',
-						type: 0
+						type: 0,
+						show:false
 					},
 					{
 						title: '危改户',
-						type: 1
+						type: 1,
+						show:false
 					},
 					{
 						title: '异地搬迁户',
-						type: 2
+						type: 2,
+						show:false
 					}
-				]
+				],
+				user:'',
+				password:'',
+				info:{},
+				moreInfo:{},
+				userId:'',
+				baseUrl:baseUrl
 			}
 		},
 		onLoad() {
-
+			let url = window.location.search;
+			let theRequest = new Object();
+			if (url.indexOf("?") != -1) {
+			let str = url.substr(1);
+			let strs = str.split("&");
+			for (let i = 0; i < strs.length; i++) {
+			    theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+			    }
+			}
+			this.userId=theRequest.id
+			this.getBaseInfo(theRequest.id)
+			if(uni.getStorageSync('Authorization')){
+				this.getMoreInfo(theRequest.id)
+			}
+			
 		},
 		methods: {
+			getBaseInfo(id){
+				apps.getBaseInfo(id).then(res=>{
+					if(res.code==200){
+						this.info=res.data
+					}else{
+						if(res.code==401){
+							uni.showToast({
+								title:'登陆超时请重新登录',
+								icon:'none'
+							})
+							uni.removeStorageSync('Authorization')
+						}else{
+							uni.showToast({
+								title:'加载数据失败',
+								icon:'none'
+							})
+						}
+					}
+				})
+			},
+			getMoreInfo(id){
+				apps.getMoreInfo(id).then(res=>{
+					if(res.code==200){
+						this.moreInfo=res.data
+						if(res.data.poor){
+							this.tagbarIndex=0
+							this.tagbarList[0].show=true
+						}
+						if(res.data.criticalReform){
+							if(res.data.poor){
+								this.tagbarIndex=0
+							}else{
+								this.tagbarIndex=1
+							}
+							this.tagbarList[1].show=true
+						}
+						if(res.data.move){
+							if(res.data.poor){
+								this.tagbarIndex=0
+							}else if(res.data.criticalReform){
+								this.tagbarIndex=1
+							}else{
+								this.tagbarIndex=2
+							}
+							this.tagbarList[2].show=true
+						}
+						this.isLogin = true
+						this.showLogin = false
+					}else{
+						if(res.code==401){
+							uni.showToast({
+								title:'登陆超时请重新登录',
+								icon:'none'
+							})
+							uni.removeStorageSync('Authorization')
+						}else{
+							uni.showToast({
+								title:'加载数据失败',
+								icon:'none'
+							})
+						}
+					}
+				})
+			},
 			close() {
 				this.showLogin = false
 			},
 			toLogin() {
-				this.showLogin = true
+				if(uni.getStorageSync('Authorization')){
+					this.getMoreInfo(this.userId)
+				}else{
+					this.showLogin = true
+				}
 			},
 			login() {
-				this.isLogin = true
-				this.showLogin = false
+				if(this.user.trim()==''){
+					wx.showToast({
+						title:'请输入用户名',
+						icon:'none'
+					})
+					return
+				}
+				if(this.password.trim()==''){
+					wx.showToast({
+						title:'密码',
+						icon:'none'
+					})
+					return
+				}
+				apps.login({username:this.user,password:this.password}).then(res=>{
+					if(res.code==200){
+						wx.showToast({
+							title:'登录成功',
+							icon:'none'
+						})
+						uni.setStorageSync('Authorization',res.token)
+						this.getMoreInfo(this.userId)
+					}else{
+						wx.showToast({
+							title:res.msg,
+							icon:'none'
+						})
+					}
+				}).catch(()=>{
+					wx.showToast({
+						title:'登录失败',
+						icon:'none'
+					})
+				})
 			},
 			handleChange(index) {
 				this.tagbarIndex = index
 			},
 			handlePreview(index){
 				console.log('asdasd')
-				uni.previewImage({
-					urls:['https://img.cdn.aliyun.dcloud.net.cn/stream/plugin_screens/ba3bd980-6e3b-11ea-a5ee-4145dcff9a6e_0.png?v=1585102469']
-				})
+				// uni.previewImage({
+				// 	urls:['https://img.cdn.aliyun.dcloud.net.cn/stream/plugin_screens/ba3bd980-6e3b-11ea-a5ee-4145dcff9a6e_0.png?v=1585102469']
+				// })
 			}
 		}
 	}
@@ -419,6 +543,7 @@
 							height: 200upx;
 							width: 200upx;
 							border-radius: 50%;
+							background-color: #EEEEEE;
 						}
 					}
 				}

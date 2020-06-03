@@ -26,7 +26,7 @@ export default {
   },
   data() {
     return {
-      title: '金合内部办公系统',
+      title: '数据录入',
       logo: logoImg
     }
   }

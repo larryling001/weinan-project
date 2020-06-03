@@ -37,7 +37,8 @@ function filterAsyncRouter(asyncRouterMap) {
       if (route.component === 'Layout') {
         route.component = Layout
       } else {
-        route.component = loadView(route.component)
+        const component = route.component
+        route.component = resolve =>loadView(component,resolve)
       }
     }
     if (route.children != null && route.children && route.children.length) {
@@ -47,8 +48,8 @@ function filterAsyncRouter(asyncRouterMap) {
   })
 }
 
-export const loadView = (view) => { // 路由懒加载
-  return () => import(`@/views/${view}`)
+export const loadView = (component,resolve) => { // 路由懒加载(改进，md若依太坑了)
+  return require(['@/views/'+ component], resolve)
 }
 
 export default permission
