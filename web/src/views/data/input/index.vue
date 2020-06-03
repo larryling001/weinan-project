@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" :inline="true">
-      <el-form-item label="角色名称" prop="userName">
+      <el-form-item label="用户名称" prop="userName">
         <el-input
           v-model="queryParams.userName"
           placeholder="请输入角色名称"
@@ -343,18 +343,20 @@
                 <el-form-item label="其他说明:">
                   <el-input style="width:300px" v-model="submitForm.pKpersExtendList[0].pRemarks"></el-input>
                 </el-form-item>
-                <el-form-item label="住房(前):">
+                <el-form-item label="住房:">
                  <el-upload
                     :action="baseUrl+'/common/upload'"
                     list-type="picture-card"
                     :headers="uploadHeaders"
                     :file-list="submitForm.pKpersExtendList[0].picZQ"
                     :on-success="handlePKZQSuccess"
-                    :on-remove="handlePKZQDelete">
+                    :on-remove="handlePKZQDelete"
+                    :on-preview="handleWGZQPreview"
+                    >
                     <i class="el-icon-plus"></i>
                   </el-upload>
                 </el-form-item>
-                <el-form-item label="住房(后):">
+                <!-- <el-form-item label="住房(后):">
                    <el-upload
                     :action="baseUrl+'/common/upload'"
                     list-type="picture-card"
@@ -364,19 +366,21 @@
                     :on-remove="handlePKZHDelete">
                     <i class="el-icon-plus"></i>
                   </el-upload>
-                </el-form-item>
-                <el-form-item label="厨房(前):">
+                </el-form-item> -->
+                <el-form-item label="厨房:">
                   <el-upload
                       :action="baseUrl+'/common/upload'"
                       list-type="picture-card"
                       :headers="uploadHeaders"
                       :file-list="submitForm.pKpersExtendList[0].picCQ"
                       :on-success="handlePKCQSuccess"
-                      :on-remove="handlePKCQDelete">
+                      :on-remove="handlePKCQDelete"
+                      :on-preview="handleWGZQPreview"
+                      >
                       <i class="el-icon-plus"></i>
                       </el-upload>
                 </el-form-item>
-                <el-form-item label="厨房(后):">
+                <!-- <el-form-item label="厨房(后):">
                    <el-upload
                       :action="baseUrl+'/common/upload'"
                       list-type="picture-card"
@@ -386,19 +390,21 @@
                       :on-remove="handlePKCHDelete">
                       <i class="el-icon-plus"></i>
                       </el-upload>
-                </el-form-item>
-                <el-form-item label="卫生间(前):">
+                </el-form-item> -->
+                <el-form-item label="卫生间:">
                    <el-upload
                       :action="baseUrl+'/common/upload'"
                       list-type="picture-card"
                       :headers="uploadHeaders"
                       :file-list="submitForm.pKpersExtendList[0].picWQ"
                       :on-success="handlePKWQSuccess"
-                      :on-remove="handlePKWQDelete">
+                      :on-remove="handlePKWQDelete"
+                      :on-preview="handleWGZQPreview"
+                      >
                       <i class="el-icon-plus"></i>
                     </el-upload>
                 </el-form-item>
-                <el-form-item label="卫生间(后):">
+                <!-- <el-form-item label="卫生间(后):">
                    <el-upload
                       :action="baseUrl+'/common/upload'"
                       list-type="picture-card"
@@ -408,7 +414,7 @@
                       :on-remove="handlePKWHDelete">
                       <i class="el-icon-plus"></i>
                     </el-upload>
-                </el-form-item>
+                </el-form-item> -->
               </el-form>
             </el-tab-pane>
             <el-tab-pane
@@ -433,18 +439,21 @@
                 <el-form-item label="其他说明:">
                   <el-input style="width:300px" v-model="submitForm.wGpersExtendList[0].extendReserveTw"></el-input>
                 </el-form-item>
-                <el-form-item label="住房(前):">
+                <el-form-item label="住房:">
                    <el-upload
                       :action="baseUrl+'/common/upload'"
                       list-type="picture-card"
                       :headers="uploadHeaders"
                       :file-list="submitForm.wGpersExtendList[0].picZQ"
                       :on-success="handleWGZQSuccess"
-                      :on-remove="handleWGZQDelete">
+                      :on-remove="handleWGZQDelete"
+                      :on-preview="handleWGZQPreview"
+                      ref="avatarUploader"
+                      >
                       <i class="el-icon-plus"></i>
                     </el-upload>
                 </el-form-item>
-                <el-form-item label="住房(后):">
+                <!-- <el-form-item label="住房(后):">
                    <el-upload
                       :action="baseUrl+'/common/upload'"
                       list-type="picture-card"
@@ -454,19 +463,21 @@
                       :on-remove="handleWGZHDelete">
                       <i class="el-icon-plus"></i>
                     </el-upload>
-                </el-form-item>
-                <el-form-item label="厨房(前):">
+                </el-form-item> -->
+                <el-form-item label="厨房:">
                    <el-upload
                       :action="baseUrl+'/common/upload'"
                       list-type="picture-card"
                       :headers="uploadHeaders"
                       :file-list="submitForm.wGpersExtendList[0].picCQ"
                       :on-success="handleWGCQSuccess"
-                      :on-remove="handleWGCQDelete">
+                      :on-remove="handleWGCQDelete"
+                      :on-preview="handleWGZQPreview"
+                      >
                       <i class="el-icon-plus"></i>
                     </el-upload>
                 </el-form-item>
-                <el-form-item label="厨房(后):">
+                <!-- <el-form-item label="厨房(后):">
                    <el-upload
                       :action="baseUrl+'/common/upload'"
                       list-type="picture-card"
@@ -476,19 +487,21 @@
                       :on-remove="handleWGCHDelete">
                       <i class="el-icon-plus"></i>
                     </el-upload>
-                </el-form-item>
-                <el-form-item label="卫生间(前):">
+                </el-form-item> -->
+                <el-form-item label="卫生间:">
                   <el-upload
                       :action="baseUrl+'/common/upload'"
                       list-type="picture-card"
                       :headers="uploadHeaders"
                       :file-list="submitForm.wGpersExtendList[0].picWQ"
                       :on-success="handleWGWQSuccess"
-                      :on-remove="handleWGWQDelete">
+                      :on-remove="handleWGWQDelete"
+                      :on-preview="handleWGZQPreview"
+                      >
                       <i class="el-icon-plus"></i>
                     </el-upload>
                 </el-form-item>
-                <el-form-item label="卫生间(后):">
+                <!-- <el-form-item label="卫生间:">
                    <el-upload
                       :action="baseUrl+'/common/upload'"
                       list-type="picture-card"
@@ -498,7 +511,7 @@
                       :on-remove="handleWGWHDelete">
                       <i class="el-icon-plus"></i>
                     </el-upload>
-                </el-form-item>
+                </el-form-item> -->
               </el-form>
             </el-tab-pane>
             <el-tab-pane
@@ -511,18 +524,20 @@
                 <el-form-item label="说明:">
                   <el-input style="width:300px" v-model="submitForm.yBpersExtendList[0].bSRemarks"></el-input>
                 </el-form-item>
-                <el-form-item label="搬迁前">
+                <el-form-item label="搬迁">
                    <el-upload
                       :action="baseUrl+'/common/upload'"
                       list-type="picture-card"
                       :headers="uploadHeaders"
                       :file-list="submitForm.yBpersExtendList[0].picBQ"
                       :on-success="handleBQQSuccess"
-                      :on-remove="handleBQQDelete">
+                      :on-remove="handleBQQDelete"
+                      :on-preview="handleWGZQPreview"
+                      >
                       <i class="el-icon-plus"></i>
                     </el-upload>
                 </el-form-item>
-                <el-form-item label="搬迁后">
+                <!-- <el-form-item label="搬迁后">
                   <el-upload
                       :action="baseUrl+'/common/upload'"
                       list-type="picture-card"
@@ -532,7 +547,7 @@
                       :on-remove="handleBQHDelete">
                       <i class="el-icon-plus"></i>
                     </el-upload>
-                </el-form-item>
+                </el-form-item> -->
               </el-form>
             </el-tab-pane>
           </el-tabs>
@@ -573,6 +588,9 @@
         <el-button @click="upload.open = false">取 消</el-button>
       </div>
     </el-dialog>
+    <el-dialog :visible.sync="dialogVisible">
+       <img width="100%" :src="dialogImageUrl" alt="">
+    </el-dialog>
   </div>
 </template>
 
@@ -610,6 +628,10 @@ export default {
       dateRange: [],
       // 状态数据字典
       statusOptions: [],
+      // 放大
+      dialogVisible:false,
+      // 放大图片操作
+      dialogImageUrl:"",
       // 数据范围选项
       dataScopeOptions: [
         {
@@ -688,6 +710,11 @@ export default {
     this.getList();
   },
   methods: {
+    // 放大操作
+    handleWGZQPreview(file){
+      this.dialogImageUrl = file.url;
+      this.dialogVisible = true;
+    },
     /** 查询角色列表 */
     getList() {
       this.loading = true;
@@ -898,6 +925,7 @@ export default {
     /** 提交按钮 */
     handlesubmitForm() {
        if(this.submitForm.pKpersExtendList.length){
+            this.submitForm.pKpersExtendList[0].persMaterialList =[]
            this.submitForm.pKpersExtendList[0].picZQ.length&&this.submitForm.pKpersExtendList[0].picZQ.map(sitem=>{
               this.submitForm.pKpersExtendList[0].persMaterialList.push({fileName:sitem.name,url:sitem.defUrl,type:'PK-ZF-01'})
             })
@@ -918,6 +946,7 @@ export default {
           })
         }
         if(this.submitForm.wGpersExtendList.length){
+          this.submitForm.wGpersExtendList[0].persMaterialList =[]
           this.submitForm.wGpersExtendList[0].picZQ.length&&this.submitForm.wGpersExtendList[0].picZQ.map(sitem=>{
               this.submitForm.wGpersExtendList[0].persMaterialList.push({fileName:sitem.name,url:sitem.defUrl,type:'WG-ZF-01'})
           })
@@ -938,6 +967,7 @@ export default {
           })
         }
         if(this.submitForm.yBpersExtendList.length){
+          this.submitForm.yBpersExtendList[0].persMaterialList =[]
            this.submitForm.yBpersExtendList[0].picBQ.length&&this.submitForm.yBpersExtendList[0].picBQ.map(sitem=>{
              this.submitForm.yBpersExtendList[0].persMaterialList.push({fileName:sitem.name,url:sitem.defUrl,type:'YB-01'})
           })
@@ -1094,14 +1124,15 @@ export default {
         defUrl:response.fileName
       })
     },
+
     //贫困-住房后上传
-    handlePKZHSuccess(response) {
-       this.submitForm.pKpersExtendList[0].picZH.push({
-        name:response.fileName,
-        url:response.url,
-        defUrl:response.fileName
-      })
-    },
+    // handlePKZHSuccess(response) {
+    //    this.submitForm.pKpersExtendList[0].picZH.push({
+    //     name:response.fileName,
+    //     url:response.url,
+    //     defUrl:response.fileName
+    //   })
+    // },
     //贫困-厨房前上传
     handlePKCQSuccess(response) {
        this.submitForm.pKpersExtendList[0].picCQ.push({
@@ -1111,13 +1142,13 @@ export default {
       })
     },
     //贫困-厨房后上传
-    handlePKCHSuccess(response) {
-       this.submitForm.pKpersExtendList[0].picCH.push({
-        name:response.fileName,
-        url:response.url,
-        defUrl:response.fileName
-      })
-    },
+    // handlePKCHSuccess(response) {
+    //    this.submitForm.pKpersExtendList[0].picCH.push({
+    //     name:response.fileName,
+    //     url:response.url,
+    //     defUrl:response.fileName
+    //   })
+    // },
     //贫困-卫生间前上传
     handlePKWQSuccess(response) {
        this.submitForm.pKpersExtendList[0].picWQ.push({
@@ -1127,13 +1158,13 @@ export default {
       })
     },
     //贫困-卫生间后上传
-    handlePKWHSuccess(response) {
-       this.submitForm.pKpersExtendList[0].picWH.push({
-        name:response.fileName,
-        url:response.url,
-        defUrl:response.fileName
-      })
-    },
+    // handlePKWHSuccess(response) {
+    //    this.submitForm.pKpersExtendList[0].picWH.push({
+    //     name:response.fileName,
+    //     url:response.url,
+    //     defUrl:response.fileName
+    //   })
+    // },
     //危改-住房前上传
     handleWGZQSuccess(response) {
         this.submitForm.wGpersExtendList[0].picZQ.push({
@@ -1143,13 +1174,13 @@ export default {
       })
     },
     //危改-住房后上传
-    handleWGZHSuccess(response) {
-       this.submitForm.wGpersExtendList[0].picZH.push({
-        name:response.fileName,
-        url:response.url,
-        defUrl:response.fileName
-      })
-    },
+    // handleWGZHSuccess(response) {
+    //    this.submitForm.wGpersExtendList[0].picZH.push({
+    //     name:response.fileName,
+    //     url:response.url,
+    //     defUrl:response.fileName
+    //   })
+    // },
     //危改-厨房前上传
     handleWGCQSuccess(response) {
         this.submitForm.wGpersExtendList[0].picCQ.push({
@@ -1159,13 +1190,13 @@ export default {
       })
     },
     //危改-厨房后上传
-    handleWGCHSuccess(response) {
-       this.submitForm.wGpersExtendList[0].picCH.push({
-        name:response.fileName,
-        url:response.url,
-        defUrl:response.fileName
-      })
-    },
+    // handleWGCHSuccess(response) {
+    //    this.submitForm.wGpersExtendList[0].picCH.push({
+    //     name:response.fileName,
+    //     url:response.url,
+    //     defUrl:response.fileName
+    //   })
+    // },
     //危改-卫生间前上传
     handleWGWQSuccess(response) {
        this.submitForm.wGpersExtendList[0].picWQ.push({
@@ -1175,13 +1206,13 @@ export default {
       })
     },
     //危改-卫生间后上传
-    handleWGWHSuccess(response) {
-        this.submitForm.wGpersExtendList[0].picWH.push({
-        name:response.fileName,
-        url:response.url,
-        defUrl:response.fileName
-      })
-    },
+    // handleWGWHSuccess(response) {
+    //     this.submitForm.wGpersExtendList[0].picWH.push({
+    //     name:response.fileName,
+    //     url:response.url,
+    //     defUrl:response.fileName
+    //   })
+    // },
     //搬迁-前
     handleBQQSuccess(response) {
         this.submitForm.yBpersExtendList[0].picBQ.push({
@@ -1191,13 +1222,13 @@ export default {
       })
     },
     //搬迁-后
-    handleBQHSuccess(response) {
-        this.submitForm.yBpersExtendList[0].picBH.push({
-        name:response.fileName,
-        url:response.url,
-        defUrl:response.fileName
-      })
-    },
+    // handleBQHSuccess(response) {
+    //     this.submitForm.yBpersExtendList[0].picBH.push({
+    //     name:response.fileName,
+    //     url:response.url,
+    //     defUrl:response.fileName
+    //   })
+    // },
      /*
     *删除的
     */
@@ -1214,23 +1245,27 @@ export default {
       }
     },
     //贫困-住房后上传
-    handlePKZHDelete(file, fileList) {
-       let i =null
-      this.submitForm.pKpersExtendList[0].picZH.map((item,index)=>{
-        if(item.name==file.name){
-          i=index
-        }
-      })
-      if(i!=null){
-        this.submitForm.pKpersExtendList[0].picZH.splice(i,1)
-      }
-    },
+    // handlePKZHDelete(file, fileList) {
+    //    let i =null
+    //   this.submitForm.pKpersExtendList[0].picZH.map((item,index)=>{
+    //     if(item.name==file.name){
+    //       i=index
+    //     }
+    //   })
+    //   if(i!=null){
+    //     this.submitForm.pKpersExtendList[0].picZH.splice(i,1)
+    //   }
+    // },
     //贫困-厨房前上传
     handlePKCQDelete(file, fileList) {
+      console.log( this.submitForm.pKpersExtendList)
         let i =null
       this.submitForm.pKpersExtendList[0].picCQ.map((item,index)=>{
+        // console.log(item.name)
+        // console.log(file.name)
         if(item.name==file.name){
-          i=index
+           i=index
+           
         }
       })
       if(i!=null){
@@ -1238,17 +1273,17 @@ export default {
       }
     },
     //贫困-厨房后上传
-    handlePKCHDelete(file, fileList) {
-       let i =null
-      this.submitForm.pKpersExtendList[0].picCH.map((item,index)=>{
-        if(item.name==file.name){
-          i=index
-        }
-      })
-      if(i!=null){
-        this.submitForm.pKpersExtendList[0].picCH.splice(i,1)
-      }
-    },
+    // handlePKCHDelete(file, fileList) {
+    //    let i =null
+    //   this.submitForm.pKpersExtendList[0].picCH.map((item,index)=>{
+    //     if(item.name==file.name){
+    //       i=index
+    //     }
+    //   })
+    //   if(i!=null){
+    //     this.submitForm.pKpersExtendList[0].picCH.splice(i,1)
+    //   }
+    // },
     //贫困-卫生间前上传
     handlePKWQDelete(file, fileList) {
        let i =null
@@ -1262,17 +1297,17 @@ export default {
       }
     },
     //贫困-卫生间后上传
-    handlePKWHDelete(file, fileList) {
-       let i =null
-      this.submitForm.pKpersExtendList[0].picWH.map((item,index)=>{
-        if(item.name==file.name){
-          i=index
-        }
-      })
-      if(i!=null){
-        this.submitForm.pKpersExtendList[0].picWH.splice(i,1)
-      }
-    },
+    // handlePKWHDelete(file, fileList) {
+    //    let i =null
+    //   this.submitForm.pKpersExtendList[0].picWH.map((item,index)=>{
+    //     if(item.name==file.name){
+    //       i=index
+    //     }
+    //   })
+    //   if(i!=null){
+    //     this.submitForm.pKpersExtendList[0].picWH.splice(i,1)
+    //   }
+    // },
     //危改-住房前上传
     handleWGZQDelete(file, fileList) {
        let i =null
@@ -1286,20 +1321,21 @@ export default {
       }
     },
     //危改-住房后上传
-    handleWGZHDelete(file, fileList) {
-       let i =null
-      this.submitForm.wGpersExtendList[0].picZH.map((item,index)=>{
-        if(item.name==file.name){
-          i=index
-        }
-      })
-      if(i!=null){
-        this.submitForm.wGpersExtendList[0].picZH.splice(i,1)
-      }
-    },
+    // handleWGZHDelete(file, fileList) {
+    //    let i =null
+    //   this.submitForm.wGpersExtendList[0].picZH.map((item,index)=>{
+    //     if(item.name==file.name){
+    //       i=index
+    //     }
+    //   })
+    //   if(i!=null){
+    //     this.submitForm.wGpersExtendList[0].picZH.splice(i,1)
+    //   }
+    // },
     //危改-厨房前上传
     handleWGCQDelete(file, fileList) {
        let i =null
+      //  console.log(this.submitForm)
       this.submitForm.wGpersExtendList[0].picCQ.map((item,index)=>{
         if(item.name==file.name){
           i=index
@@ -1310,17 +1346,17 @@ export default {
       }
     },
     //危改-厨房后上传
-    handleWGCHDelete(file, fileList) {
-       let i =null
-      this.submitForm.wGpersExtendList[0].picCH.map((item,index)=>{
-        if(item.name==file.name){
-          i=index
-        }
-      })
-      if(i!=null){
-        this.submitForm.wGpersExtendList[0].picCH.splice(i,1)
-      }
-    },
+    // handleWGCHDelete(file, fileList) {
+    //    let i =null
+    //   this.submitForm.wGpersExtendList[0].picCH.map((item,index)=>{
+    //     if(item.name==file.name){
+    //       i=index
+    //     }
+    //   })
+    //   if(i!=null){
+    //     this.submitForm.wGpersExtendList[0].picCH.splice(i,1)
+    //   }
+    // },
     //危改-卫生间前上传
     handleWGWQDelete(file, fileList) {
        let i =null
@@ -1334,17 +1370,17 @@ export default {
       }
     },
     //危改-卫生间后上传
-    handleWGWHDelete(file, fileList) {
-       let i =null
-      this.submitForm.wGpersExtendList[0].picWH.map((item,index)=>{
-        if(item.name==file.name){
-          i=index
-        }
-      })
-      if(i!=null){
-        this.submitForm.wGpersExtendList[0].picWH.splice(i,1)
-      }
-    },
+    // handleWGWHDelete(file, fileList) {
+    //    let i =null
+    //   this.submitForm.wGpersExtendList[0].picWH.map((item,index)=>{
+    //     if(item.name==file.name){
+    //       i=index
+    //     }
+    //   })
+    //   if(i!=null){
+    //     this.submitForm.wGpersExtendList[0].picWH.splice(i,1)
+    //   }
+    // },
     //搬迁-前
     handleBQQDelete(file, fileList) {
       let i =null
@@ -1358,21 +1394,24 @@ export default {
       }
     },
     //搬迁-后
-    handleBQHDelete(file, fileList) {
-      let i =null
-      this.submitForm.yBpersExtendList[0].picBH.map((item,index)=>{
-        if(item.name==file.name){
-          i=index
-        }
-      })
-      if(i!=null){
-        this.submitForm.yBpersExtendList[0].picBH.splice(i,1)
-      }
-    }
+    // handleBQHDelete(file, fileList) {
+    //   let i =null
+    //   this.submitForm.yBpersExtendList[0].picBH.map((item,index)=>{
+    //     if(item.name==file.name){
+    //       i=index
+    //     }
+    //   })
+    //   if(i!=null){
+    //     this.submitForm.yBpersExtendList[0].picBH.splice(i,1)
+    //   }
+    // }
   }
 };
 </script>
 <style >
+.app-container>>>.el-upload{
+  display: inline;
+}
 .add-edit {
   padding: 15px;
 }
