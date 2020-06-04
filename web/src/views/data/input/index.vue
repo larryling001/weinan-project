@@ -1408,7 +1408,7 @@ export default {
   }
 };
 </script>
-<style >
+<style>
 .app-container>>>.el-upload{
   display: inline;
 }

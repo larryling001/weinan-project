@@ -138,24 +138,24 @@
 					</view>
 					<view class="img-box">
 						<view class="s-title">住房</view>
-						<view class="title">前</view>
+						<!-- <view class="title">前</view> -->
 						<image class="img" :src="baseUrl+item.url" v-if="item.type=='PK-ZF-01'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image>
-						<view class="title" style="margin-top: 40upx;">后</view>
-						<image class="img" :src="baseUrl+item.url" v-if="item.type=='PK-ZF-02'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image>
+						<!-- <view class="title" style="margin-top: 40upx;">后</view> -->
+						<!-- <image class="img" :src="baseUrl+item.url" v-if="item.type=='PK-ZF-02'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image> -->
 					</view>
 					<view class="img-box">
 						<view class="s-title">厨房</view>
-						<view class="title">前</view>
+						<!-- <view class="title">前</view> -->
 						<image class="img" :src="baseUrl+item.url" v-if="item.type=='PK-CF-01'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image>
-						<view class="title" style="margin-top: 40upx;">后</view>
-						<image class="img" :src="baseUrl+item.url" v-if="item.type=='PK-CF-02'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image>
+						<!-- <view class="title" style="margin-top: 40upx;">后</view> -->
+						<!-- <image class="img" :src="baseUrl+item.url" v-if="item.type=='PK-CF-02'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image> -->
 					</view>
 					<view class="img-box">
 						<view class="s-title">卫生间</view>
-						<view class="title">前</view>
+						<!-- <view class="title">前</view> -->
 						<image class="img" :src="baseUrl+item.url" v-if="item.type=='PK-WS-01'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image>
-						<view class="title" style="margin-top: 40upx;">后</view>
-						<image class="img" :src="baseUrl+item.url" v-if="item.type=='PK-WS-02'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image>
+						<!-- <view class="title" style="margin-top: 40upx;">后</view> -->
+						<!-- <image class="img" :src="baseUrl+item.url" v-if="item.type=='PK-WS-02'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image> -->
 					</view>
 				</view>
 				<view class="poor-critical-offsite" v-if="tagbarIndex==1">
@@ -208,24 +208,24 @@
 					</view>
 					<view class="img-box">
 						<view class="s-title">住房</view>
-						<view class="title">前</view>
+						<!-- <view class="title">前</view> -->
 						<image class="img" :src="baseUrl+item.url" v-if="item.type=='WG-ZF-01'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image>
-						<view class="title" style="margin-top: 40upx;">后</view>
-						<image class="img" :src="baseUrl+item.url" v-if="item.type=='WG-ZF-02'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image>
+						<!-- <view class="title" style="margin-top: 40upx;">后</view> -->
+						<!-- <image class="img" :src="baseUrl+item.url" v-if="item.type=='WG-ZF-02'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image> -->
 					</view>
 					<view class="img-box">
 						<view class="s-title">厨房</view>
-						<view class="title">前</view>
+						<!-- <view class="title">前</view> -->
 						<image class="img" :src="baseUrl+item.url" v-if="item.type=='WG-CF-01'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image>
-						<view class="title" style="margin-top: 40upx;">后</view>
-						<image class="img" :src="baseUrl+item.url" v-if="item.type=='WG-CF-02'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image>
+						<!-- <view class="title" style="margin-top: 40upx;">后</view> -->
+						<!-- <image class="img" :src="baseUrl+item.url" v-if="item.type=='WG-CF-02'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image> -->
 					</view>
 					<view class="img-box">
 						<view class="s-title">卫生间</view>
-						<view class="title">前</view>
+						<!-- <view class="title">前</view> -->
 						<image class="img" :src="baseUrl+item.url" v-if="item.type=='WG-WS-01'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image>
-						<view class="title" style="margin-top: 40upx;">后</view>
-						<image class="img" :src="baseUrl+item.url" v-if="item.type=='WG-WS-02'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image>
+						<!-- <view class="title" style="margin-top: 40upx;">后</view> -->
+						<!-- <image class="img" :src="baseUrl+item.url" v-if="item.type=='WG-WS-02'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image> -->
 					</view>
 				</view>
 				<view class="poor-critical-offsite" v-if="tagbarIndex==2">
@@ -236,13 +236,13 @@
 						</view>
 					</view>
 					<view class="img-box">
-						<view class="s-title">搬迁前</view>
+						<view class="s-title">搬迁</view>
 						<image class="img" :src="baseUrl+item.url" v-if="item.type=='YB—01'" v-for="(item,index) in moreInfo.yBpersExtendList[0].persMaterialList" :key="index"></image>
 					</view>
-					<view class="img-box">
+					<!-- <view class="img-box">
 						<view class="s-title">搬迁后</view>
 						<image class="img" :src="baseUrl+item.url" v-if="item.type=='YB—02'" v-for="(item,index) in moreInfo.yBpersExtendList[0].persMaterialList" :key="index"></image>
-					</view>
+					</view> -->
 				</view>
 			</view>
 		</view>
@@ -307,6 +307,7 @@
 			}
 		},
 		onLoad() {
+			uni.removeStorageSync('Authorization')
 			let url = window.location.search;
 			let theRequest = new Object();
 			if (url.indexOf("?") != -1) {
@@ -318,9 +319,9 @@
 			}
 			this.userId=theRequest.id
 			this.getBaseInfo(theRequest.id)
-			if(uni.getStorageSync('Authorization')){
-				this.getMoreInfo(theRequest.id)
-			}
+			// if(uni.getStorageSync('Authorization')){
+			// 	this.getMoreInfo(theRequest.id)
+			// }
 			
 		},
 		methods: {
@@ -392,11 +393,12 @@
 				this.showLogin = false
 			},
 			toLogin() {
-				if(uni.getStorageSync('Authorization')){
-					this.getMoreInfo(this.userId)
-				}else{
-					this.showLogin = true
-				}
+				// if(uni.getStorageSync('Authorization')){
+				// 	this.getMoreInfo(this.userId)
+				// }else{
+				// 	this.showLogin = true
+				// }
+				this.showLogin = true
 			},
 			login() {
 				if(this.user.trim()==''){

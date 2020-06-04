@@ -144,7 +144,7 @@ export default {
 };
 </script> 
 
-<style>
+<style scoped>
 .editor {
   line-height: normal !important;
   height: 192px;
