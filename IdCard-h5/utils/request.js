@@ -24,7 +24,7 @@ const requestConfig = (url, data, methods, isShowLoading, contentType) => {
 			data: data,
 			header: {
 				'content-type': contentType?contentType:'application/json', // 默认值
-				'Authorization': uni.getStorageSync('Authorization') || ''
+				'Authorization': uni.getStorageSync('Authorizations') || ''
 			},
 			method: methods,
 			/**

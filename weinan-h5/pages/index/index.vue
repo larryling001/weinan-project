@@ -308,6 +308,7 @@
 		},
 		onLoad() {
 			uni.removeStorageSync('Authorization')
+			
 			let url = window.location.search;
 			let theRequest = new Object();
 			if (url.indexOf("?") != -1) {
@@ -318,6 +319,9 @@
 			    }
 			}
 			this.userId=theRequest.id
+			if(theRequest.token){
+				uni.setStorageSync('Authorization',theRequest.token)
+			}
 			this.getBaseInfo(theRequest.id)
 			// if(uni.getStorageSync('Authorization')){
 			// 	this.getMoreInfo(theRequest.id)
@@ -393,12 +397,12 @@
 				this.showLogin = false
 			},
 			toLogin() {
-				// if(uni.getStorageSync('Authorization')){
-				// 	this.getMoreInfo(this.userId)
-				// }else{
-				// 	this.showLogin = true
-				// }
-				this.showLogin = true
+				if(uni.getStorageSync('Authorization')){
+					this.getMoreInfo(this.userId)
+				}else{
+					this.showLogin = true
+				}
+				// this.showLogin = true
 			},
 			login() {
 				if(this.user.trim()==''){
