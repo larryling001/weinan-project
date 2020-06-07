@@ -253,7 +253,7 @@
             <el-row>
               <el-col :span="12">
                 <el-form-item label="户主姓名:">
-                  <el-input v-model="submitForm.userName" style="width:300px"></el-input>
+                  <el-input v-model="submitForm.userName" style="width:220px"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
@@ -265,7 +265,7 @@
             <el-row>
               <el-col :span="12">
                 <el-form-item label="市:">
-                  <el-input v-model="submitForm.city" style="width:300px"></el-input>
+                  <el-input v-model="submitForm.city" style="width:220px"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
@@ -277,12 +277,24 @@
             <el-row>
               <el-col :span="12">
                 <el-form-item label="乡镇:">
-                  <el-input v-model="submitForm.township" style="width:300px"></el-input>
+                  <el-input v-model="submitForm.township" style="width:220px"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
                 <el-form-item label="村委会:">
                   <el-input v-model="submitForm.villageCommittee" style="width:300px"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="12">
+                <el-form-item label="人口总数:">
+                  <el-input v-model="submitForm.peopleNum" style="width:220px"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="联系方式:">
+                  <el-input v-model="submitForm.dataReserveFo" style="width:300px"></el-input>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -802,7 +814,9 @@ export default {
         dataReserveO: "",
         pKpersExtendList: [],
         wGpersExtendList: [],
-        yBpersExtendList: []
+        yBpersExtendList: [],
+        peopleNum:'',
+        dataReserveFo:''
       };
       this.checkedType=[]
       this.choseUserType=[]
@@ -1458,7 +1472,7 @@ export default {
   display: block;
 }
   .drawer-footer {
-    width: 860px;
+    width: 700px;
     position: fixed;
     bottom: 0;
     border-top: 1px solid #e8e8e8;
@@ -1469,5 +1483,6 @@ export default {
   }
    .drawer-footer button {
       margin-left: 5px;
+      /* z-index: 5; */
     }
 </style>
