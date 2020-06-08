@@ -10,7 +10,7 @@
 						</view>
 					</view>
 					<view class="avatar">
-						<image :src="info.headPortrait" mode=""></image>
+						<image @click="handleImgAvator(info.headPortrait)" :src="info.headPortrait" mode=""></image>
 					</view>
 				</view>
 				<view class="main">
@@ -65,6 +65,24 @@
 							</view>
 							<view class="contnet">
 								{{info.villageCommittee}}
+							</view>
+						</view>
+					</view>
+					<view class="row flex">
+						<view class="col">
+							<view class="title">
+								家庭人口数
+							</view>
+							<view class="contnet">
+								{{info.peopleNum || '1'}}人	
+							</view>
+						</view>
+						<view class="col">
+							<view class="title">
+								联系方式
+							</view>
+							<view class="contnet">
+								{{info.dataReserveFo || '--'}}
 							</view>
 						</view>
 					</view>
@@ -139,21 +157,27 @@
 					<view class="img-box">
 						<view class="s-title">住房</view>
 						<!-- <view class="title">前</view> -->
-						<image class="img" :src="baseUrl+item.url" v-if="item.type=='PK-ZF-01'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image>
+						<image class="img" @click.stop="funPreviewImg(moreInfo.pKpersExtendList[0].persMaterialList, index)" :src="baseUrl+item.url" v-if="item.type=='PK-ZF-01'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image>
+						<view class="del-img" @click.stop="handleDelImg('zf')">删除</view>
+						<view class="upload-img" @click.stop="funLoad('zf')">上传</view>
 						<!-- <view class="title" style="margin-top: 40upx;">后</view> -->
 						<!-- <image class="img" :src="baseUrl+item.url" v-if="item.type=='PK-ZF-02'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image> -->
 					</view>
 					<view class="img-box">
 						<view class="s-title">厨房</view>
 						<!-- <view class="title">前</view> -->
-						<image class="img" :src="baseUrl+item.url" v-if="item.type=='PK-CF-01'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image>
+						<image class="img" @click.stop="funPreviewImg(moreInfo.pKpersExtendList[0].persMaterialList, index)" :src="baseUrl+item.url" v-if="item.type=='PK-CF-01'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image>
+						<view class="del-img" @click.stop="handleDelImg('cf')">删除</view>
+						<view class="upload-img" @click.stop="funLoad('cf')">上传</view>
 						<!-- <view class="title" style="margin-top: 40upx;">后</view> -->
 						<!-- <image class="img" :src="baseUrl+item.url" v-if="item.type=='PK-CF-02'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image> -->
 					</view>
 					<view class="img-box">
 						<view class="s-title">卫生间</view>
 						<!-- <view class="title">前</view> -->
-						<image class="img" :src="baseUrl+item.url" v-if="item.type=='PK-WS-01'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image>
+						<image class="img" @click.stop="funPreviewImg(moreInfo.pKpersExtendList[0].persMaterialList, index)" :src="baseUrl+item.url" v-if="item.type=='PK-WS-01'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image>
+						<view class="del-img" @click.stop="handleDelImg('wsj')">删除</view>
+						<view class="upload-img" @click.stop="funLoad('wsj')">上传</view>
 						<!-- <view class="title" style="margin-top: 40upx;">后</view> -->
 						<!-- <image class="img" :src="baseUrl+item.url" v-if="item.type=='PK-WS-02'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image> -->
 					</view>
@@ -209,21 +233,27 @@
 					<view class="img-box">
 						<view class="s-title">住房</view>
 						<!-- <view class="title">前</view> -->
-						<image class="img" :src="baseUrl+item.url" v-if="item.type=='WG-ZF-01'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image>
+						<image class="img" @click.stop="funPreviewImg(moreInfo.wGpersExtendList[0].persMaterialList, index)" :src="baseUrl+item.url" v-if="item.type=='WG-ZF-01'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image>
+						<view class="del-img" @click.stop="handleDelImg('zf')">删除</view>
+						<view class="upload-img" @click.stop="funLoad('zf')">上传</view>
 						<!-- <view class="title" style="margin-top: 40upx;">后</view> -->
 						<!-- <image class="img" :src="baseUrl+item.url" v-if="item.type=='WG-ZF-02'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image> -->
 					</view>
 					<view class="img-box">
 						<view class="s-title">厨房</view>
 						<!-- <view class="title">前</view> -->
-						<image class="img" :src="baseUrl+item.url" v-if="item.type=='WG-CF-01'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image>
+						<image class="img" @click.stop="funPreviewImg(moreInfo.wGpersExtendList[0].persMaterialList, index)" :src="baseUrl+item.url" v-if="item.type=='WG-CF-01'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image>
+						<view class="del-img" @click.stop="handleDelImg('cf')">删除</view>
+						<view class="upload-img" @click.stop="funLoad('cf')">上传</view>
 						<!-- <view class="title" style="margin-top: 40upx;">后</view> -->
 						<!-- <image class="img" :src="baseUrl+item.url" v-if="item.type=='WG-CF-02'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image> -->
 					</view>
 					<view class="img-box">
 						<view class="s-title">卫生间</view>
 						<!-- <view class="title">前</view> -->
-						<image class="img" :src="baseUrl+item.url" v-if="item.type=='WG-WS-01'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image>
+						<image class="img" @click.stop="funPreviewImg(moreInfo.wGpersExtendList[0].persMaterialList, index)" :src="baseUrl+item.url" v-if="item.type=='WG-WS-01'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image>
+						<view class="del-img" @click.stop="handleDelImg('wsj')">删除</view>
+						<view class="upload-img" @click.stop="funLoad('wsj')">上传</view>
 						<!-- <view class="title" style="margin-top: 40upx;">后</view> -->
 						<!-- <image class="img" :src="baseUrl+item.url" v-if="item.type=='WG-WS-02'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image> -->
 					</view>
@@ -237,7 +267,9 @@
 					</view>
 					<view class="img-box">
 						<view class="s-title">搬迁</view>
-						<image class="img" :src="baseUrl+item.url" v-if="item.type=='YB—01'" v-for="(item,index) in moreInfo.yBpersExtendList[0].persMaterialList" :key="index"></image>
+						<image class="img" @click.stop="funPreviewImg(moreInfo.yBpersExtendList[0].persMaterialList, index)" :src="baseUrl+item.url" v-if="item.type=='YB—01'" v-for="(item,index) in moreInfo.yBpersExtendList[0].persMaterialList" :key="index"></image>
+						<view class="del-img" @click.stop="handleDelImg('bq')">删除</view>
+						<view class="upload-img" @click.stop="funLoad('bq')">上传</view>
 					</view>
 					<!-- <view class="img-box">
 						<view class="s-title">搬迁后</view>
@@ -274,7 +306,7 @@
 
 <script>
 	import {apps} from '../../utils/services.js'
-	import {baseUrl}from '../../utils/request.js'
+	import {baseUrl, uploadUrl}from '../../utils/request.js'
 	export default {
 		data() {
 			return {
@@ -303,7 +335,10 @@
 				info:{},
 				moreInfo:{},
 				userId:'',
-				baseUrl:baseUrl
+				baseUrl:baseUrl,
+				uploadUrl: uploadUrl,
+				// 图片上传暂时的数组长度
+				imgNumList: [],
 			}
 		},
 		onLoad() {
@@ -318,11 +353,13 @@
 			    theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
 			    }
 			}
-			this.userId=theRequest.id
+			this.userId=theRequest.id;
+			// this.userId = '322a9d4d45a147a080e257e6b87754cf';
 			if(theRequest.token){
 				uni.setStorageSync('Authorization',theRequest.token)
 			}
 			this.getBaseInfo(theRequest.id)
+			// this.getBaseInfo('322a9d4d45a147a080e257e6b87754cf')
 			// if(uni.getStorageSync('Authorization')){
 			// 	this.getMoreInfo(theRequest.id)
 			// }
@@ -330,9 +367,11 @@
 		},
 		methods: {
 			getBaseInfo(id){
+				console.log('id:',id);
 				apps.getBaseInfo(id).then(res=>{
 					if(res.code==200){
-						this.info=res.data
+						this.info=res.data;
+						console.log('info', res);
 					}else{
 						if(res.code==401){
 							uni.showToast({
@@ -352,7 +391,8 @@
 			getMoreInfo(id){
 				apps.getMoreInfo(id).then(res=>{
 					if(res.code==200){
-						this.moreInfo=res.data
+						this.moreInfo=res.data;
+						console.log('data:', res.data);
 						if(res.data.poor){
 							this.tagbarIndex=0
 							this.tagbarList[0].show=true
@@ -406,14 +446,15 @@
 			},
 			login() {
 				if(this.user.trim()==''){
-					wx.showToast({
+					uni.showToast({
 						title:'请输入用户名',
 						icon:'none'
 					})
 					return
 				}
+				
 				if(this.password.trim()==''){
-					wx.showToast({
+					uni.showToast({
 						title:'密码',
 						icon:'none'
 					})
@@ -421,33 +462,197 @@
 				}
 				apps.login({username:this.user,password:this.password}).then(res=>{
 					if(res.code==200){
-						wx.showToast({
+						uni.showToast({
 							title:'登录成功',
 							icon:'none'
 						})
 						uni.setStorageSync('Authorization',res.token)
 						this.getMoreInfo(this.userId)
 					}else{
-						wx.showToast({
+						uni.showToast({
 							title:res.msg,
 							icon:'none'
 						})
 					}
 				}).catch(()=>{
-					wx.showToast({
+					uni.showToast({
 						title:'登录失败',
 						icon:'none'
 					})
 				})
 			},
+			// 切换类型： 贫困 危改 搬迁
 			handleChange(index) {
 				this.tagbarIndex = index
 			},
-			handlePreview(index){
-				console.log('asdasd')
-				// uni.previewImage({
-				// 	urls:['https://img.cdn.aliyun.dcloud.net.cn/stream/plugin_screens/ba3bd980-6e3b-11ea-a5ee-4145dcff9a6e_0.png?v=1585102469']
-				// })
+			// 预览头像
+			handleImgAvator(url) {
+				uni.previewImage({
+				            urls: [url],
+				            longPressActions: {
+				                itemList: ['发送给朋友', '保存图片', '收藏'],
+				                success: function(data) {
+				                    console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
+				                },
+				                fail: function(err) {
+				                    console.log(err.errMsg);
+				                }
+				            }
+				        });
+			},
+			/**
+			 * 预览图片
+			 * @param {String} urlList  图片地址  
+			 * @param {Number} index 当前图片index
+			 */
+			funPreviewImg(urlList, index) {
+				console.log(urlList);
+				let urls = [];
+				urlList.map( item => {
+					urls.push(this.baseUrl + item.url);
+				});
+				uni.previewImage({
+					current: index,
+				            urls: urls,
+				            longPressActions: {
+				                itemList: ['发送给朋友', '保存图片', '收藏'],
+				                success: function(data) {
+				                    console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
+				                },
+				                fail: function(err) {
+				                    console.log(err.errMsg);
+				                }
+				            }
+				        });
+			},
+			// 删除图片
+			handleDelImg(type) {
+				let info = this.tagbarList[this.tagbarIndex];
+				let pType = '';
+				console.log(info, type);
+				if(info.type == 0) {//贫困户
+					switch (type) {
+						case 'zf': pType = 'PK-ZF-01'; break;
+						case 'cf': pType = 'PK-CF-01'; break;
+						case 'wsj': pType = 'PK-WS-01'; break;
+					}
+				} 
+				if(info.type == 1) {//危改户
+					switch (type) {
+						case 'zf': pType = 'WG-ZF-01'; break;
+						case 'cf': pType = 'WG-CF-01'; break;
+						case 'wsj': pType = 'WG-WS-01'; break;
+					}
+				}
+				if(info.type == 2) {//异地搬迁户
+					pType = 'YB—01'; 
+				}
+				console.log('apps:', apps);
+				apps.delpictures({type: pType, subject: this.moreInfo.wGpersExtendList[0].id}).then( res => {
+						this.getMoreInfo(this.userId)
+						uni.showToast({
+							title:'操作成功',
+							icon:'none'
+						})
+				}).catch(()=>{
+					uni.showToast({
+						title:'操作失败',
+						icon:'none'
+					})
+				})
+			},
+			/**
+			 * 上传图片
+			 * @param {String} type 类型  厨房 住房 卫生间 搬迁
+			 */
+			funLoad(type) {
+				let that = this;
+				uni.chooseImage({
+				    count: 1, //默认9
+				    sizeType: ['compressed'], //可以指定是原图还是压缩图，默认二者都有
+				    // sourceType: ['album'], //从相册选择
+				    success: function (res) {
+						this.imgNumList = [];
+						console.log(res.tempFilePaths);
+						res.tempFilePaths.map(url => {
+							that.funUploadImgToServer(url, res.tempFilePaths.length, type);
+						});
+				        console.log(JSON.stringify(res.tempFilePaths));
+				    }
+				});
+			},
+			// 上传到服务器
+			funUploadImgToServer(url, num, type) {
+				let that = this;
+				uni.uploadFile({
+					url: this.uploadUrl, //上传接口地址
+					filePath: url,
+					name: 'file',
+					formData: {
+						'user': 'test'
+					},
+					success: (uploadFileRes) => {
+						this.imgNumList.push(uploadFileRes.data);
+						// 为了防止图片上传延迟，所以用上传完成的个数进行判断
+						// if(num == this.imgNumList.length){
+							// 此时图片上传已全部完成
+							that.funLoadToDataBase(type, JSON.parse(uploadFileRes.data));
+						// }
+						console.log(uploadFileRes.data);
+					},
+					fail: (e) => {
+						console.log('error:', e);
+					}
+				});
+			},
+			// 更新图片数据
+			funLoadToDataBase(type, url) {
+				console.log('tagbarIndex:', this.tagbarList[this.tagbarIndex]);
+				let info = this.tagbarList[this.tagbarIndex];
+				// {{info.poor?'贫困户':''}}{{info.poor&&info.criticalReform?'/':''}}{{info.criticalReform?'危改户':''}}{{info.criticalReform&&info.move?'/':''}}{{info.move?'异地搬迁户':''}}
+				// PK-ZF-01 贫困户住房   PK-CF-01 贫困户厨房  PK-WS-01 贫困户卫生间
+        // YB—01 搬迁户
+        // WG-ZF-01 危改户住房 WG-CF-01 危改户厨房 WG-WS-01 危改户卫生间
+				let pType = '';
+				console.log(info, type);
+				if(info.type == 0) {//贫困户
+					switch (type) {
+						case 'zf': pType = 'PK-ZF-01'; break;
+						case 'cf': pType = 'PK-CF-01'; break;
+						case 'wsj': pType = 'PK-WS-01'; break;
+					}
+				} 
+				if(info.type == 1) {//危改户
+					switch (type) {
+						case 'zf': pType = 'WG-ZF-01'; break;
+						case 'cf': pType = 'WG-CF-01'; break;
+						case 'wsj': pType = 'WG-WS-01'; break;
+					}
+				}
+				if(info.type == 2) {//异地搬迁户
+					pType = 'YB—01'; 
+				}
+				
+				let params = [];
+				// this.imgNumList.map( e => {
+				// 	let ele = JSON.parse(e);
+					params.push({
+						fileName: url.fileName,
+						subject: this.moreInfo.wGpersExtendList[0].id,
+						type: pType,
+						url: url.fileName
+					});
+				// });
+				console.log('params:', params)
+				apps.uploadpictures({subject: this.moreInfo.wGpersExtendList[0].id,type: pType, persMaterialList: params}).then( res => {
+						this.imgNumList = [];
+						this.getMoreInfo(this.userId);
+				}).catch(()=>{
+					uni.showToast({
+						title:'操作失败',
+						icon:'none'
+					})
+				})
 			}
 		}
 	}
@@ -785,5 +990,29 @@
 				}
 			}
 		}
+	}
+	.del-img {
+		width: 100%;
+		height: 58upx;
+		background-color: #2e89ff;
+		text-align: center;
+		line-height: 58upx;
+		font-size: 24upx;
+		color: #fff;
+		margin: 0 auto;
+		margin-top: 10upx;
+		border-radius: 8upx;
+	}
+	.upload-img {
+			width: 100%;
+			height: 58upx;
+			background-color: #2e89ff;
+			text-align: center;
+			line-height: 58upx;
+			font-size: 24upx;
+			color: #fff;
+			margin: 0 auto;
+			margin-top: 10upx;
+			border-radius: 8upx;
 	}
 </style>
