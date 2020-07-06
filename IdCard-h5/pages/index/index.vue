@@ -6,16 +6,16 @@
 		<view class="header"></view>
 		<view class="idcard-box browse">
 			<view class="browseTitle" :class="showVillage || showName ? 'flexstyle' : ''">
-				<text>浏览</text>
-				<text v-if="showVillage || showName" class="backBrowse" @click="goback">返回>></text>
+				<text class="browseStye">浏览</text>
+				<image src="../../static/back.png" v-if="showVillage || showName" class="browseImage" @click="goback"></image>
 			</view>
-			<view class="browseContent">
-				<text @click="handleShVillage(item)" v-if="showcity" v-for="item in citylist" :key="item">{{ item }}</text>
+			<view class="browseContent" :class="showcity?'browseContent1':'' ">
+				<text @click="handleShVillage(item)" v-if="showcity" v-for="item in citylist" :key="item">{{ item.substring(0,4) }}</text>
 			</view>
-			<view class="browseContent" v-if="showVillage">
-				<text @click="handleShowName(item)" v-for="item in villagelist" :key="item">{{ item }}</text>
+			<view class="browseContent" v-if="showVillage" :class="showVillage?'browseContent1':'' ">
+				<text @click="handleShowName(item)" v-for="item in villagelist" :key="item">{{ item.substring(0,4) }}</text>
 			</view>
-			<view class="browseContent" v-if="showName">
+			<view class="browseContent" v-if="showName" :class="showName?'browseContent1':'' ">
 				<text v-for="item in peoplelist" :key="item.id" @click="handlejumpDetail(item.id)">{{ item.user_name }}</text>
 			</view>
 		</view>
@@ -481,18 +481,36 @@ export default {
 // 浏览样式
 .browse {
 	margin-bottom: 30upx !important;
-	padding: 30upx;
+	padding: 0 30upx;
 	box-sizing: border-box;
 	overflow: hidden;
-	overflow-y: auto;
 	.browseTitle {
-		margin-bottom: 15upx;
 		text-align: center;
+		color: black ;
+		width: 100%;
+		display: block;
+		overflow: hidden;
+		position: relative;
+		.browseStye{
+			display: inline-block;
+		    margin-top: 20upx;
+			margin-bottom: 20upx;
+		}
+		.browseImage{
+            display: block;
+			position: absolute;
+			right: 0;
+			top: 20upx;
+			width: 50upx;
+			height: 50upx;
+		}
 	}
 	.browseContent {
 		width: 100%;
 		display: flex;
 		flex-wrap: wrap;
+		overflow: hidden;
+		overflow-y: auto;
 		text {
 			width: 214upx;
 			text-align: center;
@@ -502,6 +520,9 @@ export default {
 			overflow: hidden;
 			text-overflow: ellipsis;
 		}
+	}
+	.browseContent1{
+		height: 286upx;
 	}
 }
 .flexstyle {

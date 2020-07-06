@@ -1,7 +1,7 @@
 
 const baseUrl = 'http://com.dl.house.vaiwan.com';//测试环境
 // const baseUrl = 'http://bmn6z4.natappfree.cc';//测试环境
-// const baseUrl = 'http://192.168.1.180:8888';//测试环境
+// const baseUrl = 'http://192.168.0.189:8888';//测试环境
 // const baseUrl = 'https://hcp.ikingtech.info/evaluationMatter'; //生产环境
 const uploadUrl = "http://192.168.1.100/oss/api/upload/v1" // 上传图片地址
 const downloadUrl = "http://192.168.1.100/" // 下载图片地址

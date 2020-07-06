@@ -77,7 +77,7 @@
 								家庭人口数
 							</view>
 							<view class="contnet">
-								{{info.peopleNum || '1'}}人	
+								{{info.peopleNum || '1'}}人
 							</view>
 						</view>
 						<view class="col">
@@ -160,7 +160,8 @@
 					<view class="img-box">
 						<view class="s-title">住房</view>
 						<!-- <view class="title">前</view> -->
-						<view class="" @click.stop="funPreviewImg(moreInfo.pKpersExtendList[0].persMaterialList, index)"  v-if="item.type=='PK-ZF-01'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index">
+						<view class="" @click.stop="funPreviewImg(moreInfo.pKpersExtendList[0].persMaterialList, index)" v-if="item.type=='PK-ZF-01'"
+						 v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index">
 							<image class="img" :src="baseUrl+item.url"></image>
 							<view @tap.stop="handleDelImgOne(item.id)" class="cuIcon-roundclosefill" style="position: relative;top: -365upx;text-align: right;font-size: 40upx;color: red;"></view>
 						</view>
@@ -172,7 +173,8 @@
 					<view class="img-box">
 						<view class="s-title">厨房</view>
 						<!-- <view class="title">前</view> -->
-						<view class="" @click.stop="funPreviewImg(moreInfo.pKpersExtendList[0].persMaterialList, index)" v-if="item.type=='PK-CF-01'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index">
+						<view class="" @click.stop="funPreviewImg(moreInfo.pKpersExtendList[0].persMaterialList, index)" v-if="item.type=='PK-CF-01'"
+						 v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index">
 							<image class="img" :src="baseUrl+item.url"></image>
 							<view @tap.stop="handleDelImgOne(item.id)" class="cuIcon-roundclosefill" style="position: relative;top: -365upx;text-align: right;font-size: 40upx;color: red;"></view>
 						</view>
@@ -184,7 +186,8 @@
 					<view class="img-box">
 						<view class="s-title">卫生间</view>
 						<!-- <view class="title">前</view> -->
-						<view class="" @click.stop="funPreviewImg(moreInfo.pKpersExtendList[0].persMaterialList, index)"  v-if="item.type=='PK-WS-01'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index">
+						<view class="" @click.stop="funPreviewImg(moreInfo.pKpersExtendList[0].persMaterialList, index)" v-if="item.type=='PK-WS-01'"
+						 v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index">
 							<image class="img" :src="baseUrl+item.url"></image>
 							<view @tap.stop="handleDelImgOne(item.id)" class="cuIcon-roundclosefill" style="position: relative;top: -365upx;text-align: right;font-size: 40upx;color: red;"></view>
 						</view>
@@ -235,6 +238,61 @@
 								</view>
 							</view>
 						</view>
+						<view class="row flex">
+							<view class="col">
+								<view class="title">
+									危改类型
+								</view>
+								<view class="contnet">
+									{{moreInfo.renovated?moreInfo.renovated:'无'}}
+								</view>
+							</view>
+							<view class="col">
+								<view class="title">
+									面积
+								</view>
+								<view class="contnet">
+									{{moreInfo.area?moreInfo.area:'无'}}
+								</view>
+							</view>
+						</view>
+						<view class="row flex">
+							<view class="col">
+								<view class="title">
+									其他危改房面积
+								</view>
+								<view class="contnet">
+									{{moreInfo.otherRenovatedArea ?moreInfo.otherRenovatedArea :'无'}}
+								</view>
+							</view>
+							<view class="col">
+								<view class="title">
+									卫生间类型
+								</view>
+								<view class="contnet">
+									{{moreInfo.kitchen ?moreInfo.kitchen:'无'}}
+								</view>
+							</view>
+						</view>
+						<view class="row flex">
+							<view class="col">
+								<view class="title">
+									卫生间类型
+								</view>
+								<view class="contnet">
+									{{moreInfo.toilet?moreInfo.toilet:'无'}}
+								</view>
+							</view>
+							<view class="col">
+								<view class="title">
+
+								</view>
+								<view class="contnet">
+
+								</view>
+							</view>
+						</view>
+
 					</view>
 					<view class="remark-box">
 						<view class="s-title">说明</view>
@@ -245,10 +303,11 @@
 					<view class="img-box">
 						<view class="s-title">住房</view>
 						<!-- <view class="title">前</view> -->
-						<view class="" @click.stop="funPreviewImg(moreInfo.wGpersExtendList[0].persMaterialList, index)"  v-if="item.type=='WG-ZF-01'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index">
+						<view class="" @click.stop="funPreviewImg(moreInfo.wGpersExtendList[0].persMaterialList, index)" v-if="item.type=='WG-ZF-01'"
+						 v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index">
 							<image class="img" :src="baseUrl+item.url"></image>
 							<view @tap.stop="handleDelImgOne(item.id)" class="cuIcon-roundclosefill" style="position: relative;top: -365upx;text-align: right;font-size: 40upx;color: red;"></view>
-						</view>		
+						</view>
 						<!-- <view class="del-img" @click.stop="handleDelImg('zf')">删除</view> -->
 						<view class="upload-img" @click.stop="funLoad('zf')">上传</view>
 						<!-- <view class="title" style="margin-top: 40upx;">后</view> -->
@@ -257,11 +316,12 @@
 					<view class="img-box">
 						<view class="s-title">厨房</view>
 						<!-- <view class="title">前</view> -->
-						<view class="" @click.stop="funPreviewImg(moreInfo.wGpersExtendList[0].persMaterialList, index)"  v-if="item.type=='WG-CF-01'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index">
+						<view class="" @click.stop="funPreviewImg(moreInfo.wGpersExtendList[0].persMaterialList, index)" v-if="item.type=='WG-CF-01'"
+						 v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index">
 							<image class="img" :src="baseUrl+item.url"></image>
 							<view @tap.stop="handleDelImgOne(item.id)" class="cuIcon-roundclosefill" style="position: relative;top: -365upx;text-align: right;font-size: 40upx;color: red;"></view>
 						</view>
-						
+
 						<!-- <view class="del-img" @click.stop="handleDelImg('cf')">删除</view> -->
 						<view class="upload-img" @click.stop="funLoad('cf')">上传</view>
 						<!-- <view class="title" style="margin-top: 40upx;">后</view> -->
@@ -270,7 +330,8 @@
 					<view class="img-box">
 						<view class="s-title">卫生间</view>
 						<!-- <view class="title">前</view> -->
-						<view class="" @click.stop="funPreviewImg(moreInfo.wGpersExtendList[0].persMaterialList, index)"  v-if="item.type=='WG-WS-01'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index">
+						<view class="" @click.stop="funPreviewImg(moreInfo.wGpersExtendList[0].persMaterialList, index)" v-if="item.type=='WG-WS-01'"
+						 v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index">
 							<image class="img" :src="baseUrl+item.url"></image>
 							<view @tap.stop="handleDelImgOne(item.id)" class="cuIcon-roundclosefill" style="position: relative;top: -365upx;text-align: right;font-size: 40upx;color: red;"></view>
 						</view>
@@ -289,7 +350,8 @@
 					</view>
 					<view class="img-box">
 						<view class="s-title">搬迁</view>
-						<view class="" @click.stop="funPreviewImg(moreInfo.yBpersExtendList[0].persMaterialList, index)"  v-if="item.type=='YB—01'" v-for="(item,index) in moreInfo.yBpersExtendList[0].persMaterialList" :key="index">
+						<view class="" @click.stop="funPreviewImg(moreInfo.yBpersExtendList[0].persMaterialList, index)" v-if="item.type=='YB—01'"
+						 v-for="(item,index) in moreInfo.yBpersExtendList[0].persMaterialList" :key="index">
 							<image class="img" :src="baseUrl+item.url"></image>
 							<view @tap.stop="handleDelImgOne(item.id)" class="cuIcon-roundclosefill" style="position: relative;top: -365upx;text-align: right;font-size: 40upx;color: red;"></view>
 						</view>
@@ -332,12 +394,17 @@
 
 <script>
 	import Cookies from 'js-cookie'
-	import {apps} from '../../utils/services.js'
-	import {baseUrl, uploadUrl}from '../../utils/request.js'
+	import {
+		apps
+	} from '../../utils/services.js'
+	import {
+		baseUrl,
+		uploadUrl
+	} from '../../utils/request.js'
 	import KdPreviewImage from "@/components/kd-preview-image/kd-preview-image" // 将文件引入项目中
 	export default {
-		components:{
-		    KdPreviewImage
+		components: {
+			KdPreviewImage
 		},
 		data() {
 			return {
@@ -348,50 +415,50 @@
 				tagbarList: [{
 						title: '贫困户',
 						type: 0,
-						show:false
+						show: false
 					},
 					{
 						title: '危改户',
 						type: 1,
-						show:false
+						show: false
 					},
 					{
 						title: '异地搬迁户',
 						type: 2,
-						show:false
+						show: false
 					}
 				],
-				user:'',
-				password:'',
-				info:{},
-				moreInfo:{},
-				userId:'',
-				baseUrl:baseUrl,
+				user: '',
+				password: '',
+				info: {},
+				moreInfo: {},
+				userId: '',
+				baseUrl: baseUrl,
 				uploadUrl: uploadUrl,
 				// 图片上传暂时的数组长度
 				imgNumList: [],
-				urlObj:{},
-				urlId:'',
-				show:false,
-				urlstring:[],
-				urlIndex:0
+				urlObj: {},
+				urlId: '',
+				show: false,
+				urlstring: [],
+				urlIndex: 0
 			}
 		},
 		onLoad() {
-			
+
 			// uni.removeStorageSync('Authorization')
 			let url = window.location.search;
-			this.urlObj=window.location
-			console.log(this.urlObj,'this.urlObj.origin')
+			this.urlObj = window.location
+			console.log(this.urlObj, 'this.urlObj.origin')
 			let theRequest = new Object();
 			if (url.indexOf("?") != -1) {
-			let str = url.substr(1);
-			let strs = str.split("&");
-			for (let i = 0; i < strs.length; i++) {
-			    theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
-			    }
+				let str = url.substr(1);
+				let strs = str.split("&");
+				for (let i = 0; i < strs.length; i++) {
+					theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+				}
 			}
-			this.userId=theRequest.id;
+			this.userId = theRequest.id;
 			// this.userId = '322a9d4d45a147a080e257e6b87754cf';
 			// if(theRequest.token){
 			// 	let  in60Minutes  =  1 / 24 ;
@@ -402,80 +469,79 @@
 			// 	window.location.href=this.urlObj.origin+this.urlObj.pathname+'?id='+this.urlId+this.urlObj.hash
 			// 	uni.setStorageSync('Authorization',theRequest.token)
 			// }
-			this.urlId=theRequest.id
+			this.urlId = theRequest.id
 			this.getBaseInfo(theRequest.id)
 			// this.getBaseInfo('322a9d4d45a147a080e257e6b87754cf')
 			// if(uni.getStorageSync('Authorization')){
 			// 	this.getMoreInfo(theRequest.id)
 			// }
-			
+
 		},
 		methods: {
-			getBaseInfo(id){
-				console.log('id:',id);
-				apps.getBaseInfo(id).then(res=>{
-					if(res.code==200){
-						this.info=res.data;
+			getBaseInfo(id) {
+				console.log('id:', id);
+				apps.getBaseInfo(id).then(res => {
+					if (res.code == 200) {
+						this.info = res.data;
 						console.log('info', res);
-					}else{
-						if(res.code==401){
+					} else {
+						if (res.code == 401) {
 							uni.showToast({
-								title:'登陆超时请重新登录',
-								icon:'none'
+								title: '登陆超时请重新登录',
+								icon: 'none'
 							})
 							Cookies.remove('Authorization');
 							// uni.removeStorageSync('Authorization')
-						}else{
+						} else {
 							uni.showToast({
-								title:res.msg,
-								icon:'none'
+								title: res.msg,
+								icon: 'none'
 							})
 						}
 					}
 				})
 			},
-			getMoreInfo(id){
-				apps.getMoreInfo(id).then(res=>{
-					if(res.code==200){
-						this.moreInfo=res.data;
-						console.log('data:', res.data);
-						if(res.data.poor){
-							this.tagbarIndex=0
-							this.tagbarList[0].show=true
+			getMoreInfo(id) {
+				apps.getMoreInfo(id).then(res => {
+					if (res.code == 200) {
+						this.moreInfo = res.data;
+						if (res.data.poor) {
+							this.tagbarIndex = 0
+							this.tagbarList[0].show = true
 						}
-						if(res.data.criticalReform){
-							if(res.data.poor){
-								this.tagbarIndex=0
-							}else{
-								this.tagbarIndex=1
+						if (res.data.criticalReform) {
+							if (res.data.poor) {
+								this.tagbarIndex = 0
+							} else {
+								this.tagbarIndex = 1
 							}
-							this.tagbarList[1].show=true
+							this.tagbarList[1].show = true
 						}
-						if(res.data.move){
-							if(res.data.poor){
-								this.tagbarIndex=0
-							}else if(res.data.criticalReform){
-								this.tagbarIndex=1
-							}else{
-								this.tagbarIndex=2
+						if (res.data.move) {
+							if (res.data.poor) {
+								this.tagbarIndex = 0
+							} else if (res.data.criticalReform) {
+								this.tagbarIndex = 1
+							} else {
+								this.tagbarIndex = 2
 							}
-							this.tagbarList[2].show=true
+							this.tagbarList[2].show = true
 						}
 						this.isLogin = true
 						this.showLogin = false
-					}else{
-						if(res.code==401){
+					} else {
+						if (res.code == 401) {
 							uni.showToast({
-								title:'登陆超时请重新登录',
-								icon:'none'
+								title: '登陆超时请重新登录',
+								icon: 'none'
 							})
 							Cookies.remove('Authorization');
 							this.showLogin = true
 							// uni.removeStorageSync('Authorization')
-						}else{
+						} else {
 							uni.showToast({
-								title:res.msg,
-								icon:'none'
+								title: res.msg,
+								icon: 'none'
 							})
 						}
 					}
@@ -485,50 +551,53 @@
 				this.showLogin = false
 			},
 			toLogin() {
-				if(Cookies.get('Authorization')){
+				if (Cookies.get('Authorization')) {
 					this.getMoreInfo(this.userId)
-				}else{
+				} else {
 					this.showLogin = true
 				}
 			},
 			login() {
-				if(this.user.trim()==''){
+				if (this.user.trim() == '') {
 					uni.showToast({
-						title:'请输入用户名',
-						icon:'none'
+						title: '请输入用户名',
+						icon: 'none'
 					})
 					return
 				}
-				
-				if(this.password.trim()==''){
+
+				if (this.password.trim() == '') {
 					uni.showToast({
-						title:'密码',
-						icon:'none'
+						title: '密码',
+						icon: 'none'
 					})
 					return
 				}
-				apps.login({username:this.user,password:this.password}).then(res=>{
-					if(res.code==200){
+				apps.login({
+					username: this.user,
+					password: this.password
+				}).then(res => {
+					if (res.code == 200) {
 						uni.showToast({
-							title:'登录成功',
-							icon:'none'
+							title: '登录成功',
+							icon: 'none'
 						})
-						let  in60Minutes  =  1 / 24 ;
-						Cookies.set('Authorization',res.token,{ 
-							expires:in60Minutes 
+						let in60Minutes = 1 / 24;
+						Cookies.set('Authorization', res.token, {
+							expires: in60Minutes
 						})
 						// uni.setStorageSync('Authorization',res.token)
 						this.getMoreInfo(this.userId)
-					}else{
+					} else {
 						uni.showToast({
-							title:res.msg,
-							icon:'none'
+							title: res.msg,
+							icon: 'none'
 						})
 					}
-				}).catch(()=>{
+				}).catch(() => {
 					uni.showToast({
-						title:'登录失败',
-						icon:'none'
+						title: '登录失败',
+						icon: 'none'
 					})
 				})
 			},
@@ -539,17 +608,17 @@
 			// 预览头像
 			handleImgAvator(url) {
 				uni.previewImage({
-				            urls: [url],
-				            longPressActions: {
-				                itemList: ['发送给朋友', '保存图片', '收藏'],
-				                success: function(data) {
-				                    console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
-				                },
-				                fail: function(err) {
-				                    console.log(err.errMsg);
-				                }
-				            }
-				        });
+					urls: [url],
+					longPressActions: {
+						itemList: ['发送给朋友', '保存图片', '收藏'],
+						success: function(data) {
+							console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
+						},
+						fail: function(err) {
+							console.log(err.errMsg);
+						}
+					}
+				});
 			},
 			/**
 			 * 预览图片
@@ -559,12 +628,12 @@
 			funPreviewImg(urlList, index) {
 				console.log(urlList);
 				let urls = [];
-				urlList.map( item => {
+				urlList.map(item => {
 					urls.push(this.baseUrl + item.url);
 				});
-				this.urlIndex=index
-				this.urlstring=urls
-				this.show=true
+				this.urlIndex = index
+				this.urlstring = urls
+				this.show = true
 				// uni.previewImage({
 				// 	current: index,
 				//             urls: urls,
@@ -584,55 +653,70 @@
 				let info = this.tagbarList[this.tagbarIndex];
 				let pType = '';
 				console.log(info, type);
-				if(info.type == 0) {//贫困户
+				if (info.type == 0) { //贫困户
 					switch (type) {
-						case 'zf': pType = 'PK-ZF-01'; break;
-						case 'cf': pType = 'PK-CF-01'; break;
-						case 'wsj': pType = 'PK-WS-01'; break;
-					}
-				} 
-				if(info.type == 1) {//危改户
-					switch (type) {
-						case 'zf': pType = 'WG-ZF-01'; break;
-						case 'cf': pType = 'WG-CF-01'; break;
-						case 'wsj': pType = 'WG-WS-01'; break;
+						case 'zf':
+							pType = 'PK-ZF-01';
+							break;
+						case 'cf':
+							pType = 'PK-CF-01';
+							break;
+						case 'wsj':
+							pType = 'PK-WS-01';
+							break;
 					}
 				}
-				if(info.type == 2) {//异地搬迁户
-					pType = 'YB—01'; 
+				if (info.type == 1) { //危改户
+					switch (type) {
+						case 'zf':
+							pType = 'WG-ZF-01';
+							break;
+						case 'cf':
+							pType = 'WG-CF-01';
+							break;
+						case 'wsj':
+							pType = 'WG-WS-01';
+							break;
+					}
 				}
-				apps.delpictures({type: pType, subject: this.moreInfo.wGpersExtendList[0].id}).then( res => {
-						this.getMoreInfo(this.userId)
-						uni.showToast({
-							title:'操作成功',
-							icon:'none'
-						})
-				}).catch(()=>{
+				if (info.type == 2) { //异地搬迁户
+					pType = 'YB—01';
+				}
+				apps.delpictures({
+					type: pType,
+					subject: this.moreInfo.wGpersExtendList[0].id
+				}).then(res => {
+					this.getMoreInfo(this.userId)
 					uni.showToast({
-						title:'操作失败',
-						icon:'none'
+						title: '操作成功',
+						icon: 'none'
+					})
+				}).catch(() => {
+					uni.showToast({
+						title: '操作失败',
+						icon: 'none'
 					})
 				})
 			},
 			//删除图片-单删
-			handleDelImgOne(id){
-				apps.delImgOne(id).then(res=>{
-					if(res.code==200){
+			handleDelImgOne(id) {
+				apps.delImgOne(id).then(res => {
+					if (res.code == 200) {
 						this.getMoreInfo(this.userId);
 						uni.showToast({
-							title:'操作成功',
-							icon:'none'
+							title: '操作成功',
+							icon: 'none'
 						})
-					}else{
+					} else {
 						uni.showToast({
-							title:'操作失败',
-							icon:'none'
+							title: '操作失败',
+							icon: 'none'
 						})
-					}			
-				}).catch(()=>{
+					}
+				}).catch(() => {
 					uni.showToast({
-						title:'操作失败',
-						icon:'none'
+						title: '操作失败',
+						icon: 'none'
 					})
 				})
 			},
@@ -643,15 +727,15 @@
 			funLoad(type) {
 				let that = this;
 				uni.chooseImage({
-				    count: 1, //默认9
-				    sizeType: ['compressed'], //可以指定是原图还是压缩图，默认二者都有
-				    // sourceType: ['album'], //从相册选择
-				    success: function (res) {
+					count: 1, //默认9
+					sizeType: ['compressed'], //可以指定是原图还是压缩图，默认二者都有
+					// sourceType: ['album'], //从相册选择
+					success: function(res) {
 						this.imgNumList = [];
 						res.tempFilePaths.map(url => {
 							that.funUploadImgToServer(url, res.tempFilePaths.length, type);
 						});
-				    }
+					}
 				});
 			},
 			// 上传到服务器
@@ -668,8 +752,8 @@
 						this.imgNumList.push(uploadFileRes.data);
 						// 为了防止图片上传延迟，所以用上传完成的个数进行判断
 						// if(num == this.imgNumList.length){
-							// 此时图片上传已全部完成
-							that.funLoadToDataBase(type, JSON.parse(uploadFileRes.data));
+						// 此时图片上传已全部完成
+						that.funLoadToDataBase(type, JSON.parse(uploadFileRes.data));
 						// }
 					},
 					fail: (e) => {
@@ -682,67 +766,83 @@
 				let info = this.tagbarList[this.tagbarIndex];
 				// {{info.poor?'贫困户':''}}{{info.poor&&info.criticalReform?'/':''}}{{info.criticalReform?'危改户':''}}{{info.criticalReform&&info.move?'/':''}}{{info.move?'异地搬迁户':''}}
 				// PK-ZF-01 贫困户住房   PK-CF-01 贫困户厨房  PK-WS-01 贫困户卫生间
-        // YB—01 搬迁户
-        // WG-ZF-01 危改户住房 WG-CF-01 危改户厨房 WG-WS-01 危改户卫生间
+				// YB—01 搬迁户
+				// WG-ZF-01 危改户住房 WG-CF-01 危改户厨房 WG-WS-01 危改户卫生间
 				let pType = '';
 				console.log(info, type);
-				if(info.type == 0) {//贫困户
+				if (info.type == 0) { //贫困户
 					switch (type) {
-						case 'zf': pType = 'PK-ZF-01'; break;
-						case 'cf': pType = 'PK-CF-01'; break;
-						case 'wsj': pType = 'PK-WS-01'; break;
-					}
-				} 
-				if(info.type == 1) {//危改户
-					switch (type) {
-						case 'zf': pType = 'WG-ZF-01'; break;
-						case 'cf': pType = 'WG-CF-01'; break;
-						case 'wsj': pType = 'WG-WS-01'; break;
+						case 'zf':
+							pType = 'PK-ZF-01';
+							break;
+						case 'cf':
+							pType = 'PK-CF-01';
+							break;
+						case 'wsj':
+							pType = 'PK-WS-01';
+							break;
 					}
 				}
-				if(info.type == 2) {//异地搬迁户
-					pType = 'YB—01'; 
+				if (info.type == 1) { //危改户
+					switch (type) {
+						case 'zf':
+							pType = 'WG-ZF-01';
+							break;
+						case 'cf':
+							pType = 'WG-CF-01';
+							break;
+						case 'wsj':
+							pType = 'WG-WS-01';
+							break;
+					}
 				}
-				
+				if (info.type == 2) { //异地搬迁户
+					pType = 'YB—01';
+				}
+
 				let params = [];
 				// this.imgNumList.map( e => {
 				// 	let ele = JSON.parse(e);
-					params.push({
-						fileName: url.fileName,
-						subject: this.moreInfo.wGpersExtendList[0].id,
-						type: pType,
-						url: url.fileName
-					});
+				params.push({
+					fileName: url.fileName,
+					subject: this.moreInfo.wGpersExtendList[0].id,
+					type: pType,
+					url: url.fileName
+				});
 				// });
-				apps.uploadpictures({subject: this.moreInfo.wGpersExtendList[0].id,type: pType, persMaterialList: params}).then( res => {
-						this.imgNumList = [];
-						this.getMoreInfo(this.userId);
-				}).catch(()=>{
+				apps.uploadpictures({
+					subject: this.moreInfo.wGpersExtendList[0].id,
+					type: pType,
+					persMaterialList: params
+				}).then(res => {
+					this.imgNumList = [];
+					this.getMoreInfo(this.userId);
+				}).catch(() => {
 					uni.showToast({
-						title:'操作失败',
-						icon:'none'
+						title: '操作失败',
+						icon: 'none'
 					})
 				})
 			},
-			logout(){
+			logout() {
 				let that = this
 				uni.showModal({
-				    title: '提示',
-				    content: '是否退出登录？',
-				    success: function (res) {
-				        if (res.confirm) {
-				            wx.removeStorageSync('Authorization')
-							that.user='',
-							that.password='',
-							that.moreInfo={},
-							// 图片上传暂时的数组长度
-							that.imgNumList=[],
-							that.isLogin=false,
-							window.location.href=that.urlObj.origin+that.urlObj.pathname+'?id='+that.urlId+that.urlObj.hash
-				        } else if (res.cancel) {
-				            console.log('用户点击取消');
-				        }
-				    }
+					title: '提示',
+					content: '是否退出登录？',
+					success: function(res) {
+						if (res.confirm) {
+							wx.removeStorageSync('Authorization')
+							that.user = '',
+								that.password = '',
+								that.moreInfo = {},
+								// 图片上传暂时的数组长度
+								that.imgNumList = [],
+								that.isLogin = false,
+								window.location.href = that.urlObj.origin + that.urlObj.pathname + '?id=' + that.urlId + that.urlObj.hash
+						} else if (res.cancel) {
+							console.log('用户点击取消');
+						}
+					}
 				});
 			}
 		}
@@ -751,22 +851,26 @@
 
 <style lang="scss" scoped>
 	@import '../../static/stylesheet.css';
-	.logout{
+
+	.logout {
 		height: 68upx;
 		width: 68upx;
 		border-radius: 50%;
-		background:rgba(58,123,255,1);;
+		background: rgba(58, 123, 255, 1);
+		;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		position: absolute;
 		top: 30upx;
 		right: 30upx;
-		.logout-img{
+
+		.logout-img {
 			height: 44upx;
 			width: 44upx;
 		}
 	}
+
 	//公共样式
 	.flex {
 		display: flex;
@@ -986,17 +1090,20 @@
 							}
 						}
 					}
-					.remark-box{
+
+					.remark-box {
 						padding: 0 28upx 100upx 28upx;
 						background: rgba(255, 255, 255, 1);
 						border-radius: 16upx;
 						margin-top: 20upx;
-						.title{
+
+						.title {
 							font-size: 40upx;
 							font-weight: bold;
 							color: #656565;
 						}
 					}
+
 					.img-box {
 						background: rgba(255, 255, 255, 1);
 						border-radius: 16upx;
@@ -1098,6 +1205,7 @@
 			}
 		}
 	}
+
 	.del-img {
 		width: 100%;
 		height: 58upx;
@@ -1110,16 +1218,17 @@
 		margin-top: 10upx;
 		border-radius: 8upx;
 	}
+
 	.upload-img {
-			width: 100%;
-			height: 58upx;
-			background-color: #2e89ff;
-			text-align: center;
-			line-height: 58upx;
-			font-size: 24upx;
-			color: #fff;
-			margin: 0 auto;
-			margin-top: 10upx;
-			border-radius: 8upx;
+		width: 100%;
+		height: 58upx;
+		background-color: #2e89ff;
+		text-align: center;
+		line-height: 58upx;
+		font-size: 24upx;
+		color: #fff;
+		margin: 0 auto;
+		margin-top: 10upx;
+		border-radius: 8upx;
 	}
 </style>

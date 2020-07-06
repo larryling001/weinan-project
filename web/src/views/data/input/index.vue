@@ -448,9 +448,50 @@
                 <el-form-item label="改造状态:">
                   <el-input style="width:300px" v-model="submitForm.wGpersExtendList[0].gTransStatus"></el-input>
                 </el-form-item>
+                <el-form-item label="危改类型:">
+                 <el-select v-model="submitForm.renovated" placeholder="请选择" style="width:300px">
+                  <el-option
+                      v-for="item in renovatedOptions"
+                      :key="item"
+                      :label="item"
+                      :value="item"
+                      >
+                  </el-option>
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="面积:">
+                  <el-input style="width:300px" v-model="submitForm.area"></el-input>
+                </el-form-item>
+                <el-form-item label="其他危改房面积:">
+                  <el-input style="width:300px" v-model="submitForm.otherRenovatedArea "></el-input>
+                </el-form-item>
+                <el-form-item label="厨房类型:">
+                  <el-select style="width:300px" v-model="submitForm.kitchen" placeholder="请选择">
+                  <el-option
+                      v-for="item in kitchenOptions"
+                      :key="item"
+                      :label="item"
+                      :value="item"
+                      >
+                  </el-option>
+                  </el-select>
+                </el-form-item>
+                
+                <el-form-item label="卫生间类型:">
+                  <el-select style="width:300px" v-model="submitForm.toilet" placeholder="请选择">
+                  <el-option
+                      v-for="item in toiletOptions"
+                      :key="item"
+                      :label="item"
+                      :value="item"
+                      >
+                  </el-option>
+                  </el-select>
+                </el-form-item>
                 <el-form-item label="其他说明:">
                   <el-input style="width:300px" v-model="submitForm.wGpersExtendList[0].extendReserveTw"></el-input>
                 </el-form-item>
+                
                 <el-form-item label="住房:">
                    <el-upload
                       :action="baseUrl+'/common/upload'"
@@ -715,7 +756,10 @@ export default {
       uploadHeaders: {
         Authorization: "Bearer " + getToken()
       },
-      choseUserType:[]
+      choseUserType:[],
+      kitchenOptions:["独立","非独立"],
+      toiletOptions:["旱厕","非旱厕"],
+      renovatedOptions:["C级","D级"],
     };
   },
   created() {
