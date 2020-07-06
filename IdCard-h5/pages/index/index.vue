@@ -1,5 +1,8 @@
 <template>
 	<view class="content">
+		<!-- <view class="logout" @click="logout">
+			<image src="../../static/logout.png" mode="" class="logout-img"></image>
+		</view> -->
 		<view class="header"></view>
 		<view class="idcard-box browse">
 			<view class="browseTitle" :class="showVillage || showName ? 'flexstyle' : ''">
@@ -99,6 +102,7 @@
 <script>
 import { baseUrl } from '../../utils/request.js';
 import { apps } from '../../utils/services.js';
+import Cookies from 'js-cookie'
 export default {
 	data() {
 		return {
@@ -131,26 +135,72 @@ export default {
 		};
 	},
 	onLoad() {
-		uni.removeStorageSync('Authorizations');
+		// uni.removeStorageSync('Authorizations');
+		if(Cookies.get('Authorization')){
+			this.showLogin = false;
+			this.getTownlist()
+			this.getStatistics()
+		}
 	},
 	methods: {
 		// 获取统计数据
 		getStatistics(){
 			apps.statistics(this.queryInfo).then(res=>{
-				this.staMessage = res.data
+				if(res.code==200){
+					this.staMessage = res.data
+				}else if(res.code==401){
+					Cookies.remove('Authorization');
+					this.showLogin = true
+					uni.showToast({
+						title: '登陆超时请重新登录',
+						icon: 'none'
+					});
+				}else{
+					uni.showToast({
+						title: '系统错误',
+						icon: 'none'
+					});
+				}
 			})
 		},
 		// 获取年度
 		getyear(){
 			apps.year().then(res=>{
-				this.yearlist =res.data
-				
+				if(res.code==200){
+					this.yearlist =res.data
+				}else if(res.code==401){
+					Cookies.remove('Authorization');
+					this.showLogin = true
+					uni.showToast({
+						title: '登陆超时请重新登录',
+						icon: 'none'
+					});
+				}else{
+					uni.showToast({
+						title: '系统错误',
+						icon: 'none'
+					});
+				}
 			})
 		},
 		// 获取人员类型
 		getPeopleType(){
 			apps.usertype().then(res=>{
-				this.usertype = res.data
+				if(res.code==200){
+					this.usertype = res.data
+				}else if(res.code==401){
+					Cookies.remove('Authorization');
+					this.showLogin = true
+					uni.showToast({
+						title: '登陆超时请重新登录',
+						icon: 'none'
+					});
+				}else{
+					uni.showToast({
+						title: '系统错误',
+						icon: 'none'
+					});
+				}
 			})
 		},
 		// 返回
@@ -171,7 +221,7 @@ export default {
 		},
 		// 点击人名跳转详情
 		handlejumpDetail(id){
-			window.location.href = this.baseUrl + `/h5/?id=${id}&token=${uni.getStorageSync('Authorizations')}`;
+			window.location.href = this.baseUrl + `/h5/?id=${id}`;
 		},
 		getTownlist(){
 			apps.city().then(res=>{
@@ -256,10 +306,17 @@ export default {
 			apps.cardID(this.IdNumber).then(res => {
 				console.log(res.data);
 				if (res.code == 200) {
-					window.location.href = this.baseUrl + `/h5/?id=${res.data}&token=${uni.getStorageSync('Authorizations')}`;
-				} else {
+					window.location.href = this.baseUrl + `/h5/?id=${res.data}`;
+				}else if(res.code==401){
+					Cookies.remove('Authorization');
+					this.showLogin = true
 					uni.showToast({
-						title: '未查询到数据',
+						title: '登陆超时请重新登录',
+						icon: 'none'
+					});
+				}else {
+					uni.showToast({
+						title: res.msg,
 						icon: 'none'
 					});
 				}
@@ -302,7 +359,10 @@ export default {
 							title: '登录成功',
 							icon: 'none'
 						});
-						uni.setStorageSync('Authorizations', res.token);
+						let  in60Minutes  =  1 / 24 ;
+						Cookies.set('Authorization',res.token,{ 
+							expires:in60Minutes 
+						})
 						this.getTownlist()
 						this.getStatistics()
 						this.showLogin = false;
@@ -319,6 +379,30 @@ export default {
 						icon: 'none'
 					});
 				});
+		},
+		logout(){
+			let that = this
+			uni.showModal({
+			    title: '提示',
+			    content: '是否退出登录？',
+			    success: function (res) {
+			        if (res.confirm) {
+						console.log('asdasds')
+			            wx.removeStorageSync('Authorizations')
+						that.citylist=[]
+						that.villagelist=[]
+						that.peoplelist=[]
+						that.yearlist=[]
+						that.usertype=[]
+						that.staMessage={}
+						that.user='',
+						that.password='',
+						that.showLogin=true
+			        } else if (res.cancel) {
+			            console.log('用户点击取消');
+			        }
+			    }
+			});
 		}
 	}
 };
@@ -326,6 +410,22 @@ export default {
 
 <style lang="scss">
 // 统计按钮
+.logout{
+	height: 68upx;
+	width: 68upx;
+	border-radius: 50%;
+	background:rgba(58,123,255,1);;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	top: 30upx;
+	right: 30upx;
+	.logout-img{
+		height: 44upx;
+		width: 44upx;
+	}
+}
 .statisicsBtn {
 	height: 96upx;
 	background: rgba(45, 125, 255, 1);

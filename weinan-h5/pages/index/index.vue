@@ -1,5 +1,8 @@
 <template>
 	<view class="content">
+		<!-- <view class="logout" @click="logout">
+			<image src="../../static/logout.png" mode="" class="logout-img"></image>
+		</view> -->
 		<view class="header"></view>
 		<view class="info">
 			<view class="base-info">
@@ -157,8 +160,11 @@
 					<view class="img-box">
 						<view class="s-title">住房</view>
 						<!-- <view class="title">前</view> -->
-						<image class="img" @click.stop="funPreviewImg(moreInfo.pKpersExtendList[0].persMaterialList, index)" :src="baseUrl+item.url" v-if="item.type=='PK-ZF-01'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image>
-						<view class="del-img" @click.stop="handleDelImg('zf')">删除</view>
+						<view class="" @click.stop="funPreviewImg(moreInfo.pKpersExtendList[0].persMaterialList, index)"  v-if="item.type=='PK-ZF-01'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index">
+							<image class="img" :src="baseUrl+item.url"></image>
+							<view @tap.stop="handleDelImgOne(item.id)" class="cuIcon-roundclosefill" style="position: relative;top: -365upx;text-align: right;font-size: 40upx;color: red;"></view>
+						</view>
+						<!-- <view class="del-img" @click.stop="handleDelImg('zf')">删除</view> -->
 						<view class="upload-img" @click.stop="funLoad('zf')">上传</view>
 						<!-- <view class="title" style="margin-top: 40upx;">后</view> -->
 						<!-- <image class="img" :src="baseUrl+item.url" v-if="item.type=='PK-ZF-02'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image> -->
@@ -166,8 +172,11 @@
 					<view class="img-box">
 						<view class="s-title">厨房</view>
 						<!-- <view class="title">前</view> -->
-						<image class="img" @click.stop="funPreviewImg(moreInfo.pKpersExtendList[0].persMaterialList, index)" :src="baseUrl+item.url" v-if="item.type=='PK-CF-01'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image>
-						<view class="del-img" @click.stop="handleDelImg('cf')">删除</view>
+						<view class="" @click.stop="funPreviewImg(moreInfo.pKpersExtendList[0].persMaterialList, index)" v-if="item.type=='PK-CF-01'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index">
+							<image class="img" :src="baseUrl+item.url"></image>
+							<view @tap.stop="handleDelImgOne(item.id)" class="cuIcon-roundclosefill" style="position: relative;top: -365upx;text-align: right;font-size: 40upx;color: red;"></view>
+						</view>
+						<!-- <view class="del-img" @click.stop="handleDelImg('cf')">删除</view> -->
 						<view class="upload-img" @click.stop="funLoad('cf')">上传</view>
 						<!-- <view class="title" style="margin-top: 40upx;">后</view> -->
 						<!-- <image class="img" :src="baseUrl+item.url" v-if="item.type=='PK-CF-02'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image> -->
@@ -175,8 +184,11 @@
 					<view class="img-box">
 						<view class="s-title">卫生间</view>
 						<!-- <view class="title">前</view> -->
-						<image class="img" @click.stop="funPreviewImg(moreInfo.pKpersExtendList[0].persMaterialList, index)" :src="baseUrl+item.url" v-if="item.type=='PK-WS-01'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image>
-						<view class="del-img" @click.stop="handleDelImg('wsj')">删除</view>
+						<view class="" @click.stop="funPreviewImg(moreInfo.pKpersExtendList[0].persMaterialList, index)"  v-if="item.type=='PK-WS-01'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index">
+							<image class="img" :src="baseUrl+item.url"></image>
+							<view @tap.stop="handleDelImgOne(item.id)" class="cuIcon-roundclosefill" style="position: relative;top: -365upx;text-align: right;font-size: 40upx;color: red;"></view>
+						</view>
+						<!-- <view class="del-img" @click.stop="handleDelImg('wsj')">删除</view> -->
 						<view class="upload-img" @click.stop="funLoad('wsj')">上传</view>
 						<!-- <view class="title" style="margin-top: 40upx;">后</view> -->
 						<!-- <image class="img" :src="baseUrl+item.url" v-if="item.type=='PK-WS-02'" v-for="(item,index) in moreInfo.pKpersExtendList[0].persMaterialList" :key="index"></image> -->
@@ -233,8 +245,11 @@
 					<view class="img-box">
 						<view class="s-title">住房</view>
 						<!-- <view class="title">前</view> -->
-						<image class="img" @click.stop="funPreviewImg(moreInfo.wGpersExtendList[0].persMaterialList, index)" :src="baseUrl+item.url" v-if="item.type=='WG-ZF-01'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image>
-						<view class="del-img" @click.stop="handleDelImg('zf')">删除</view>
+						<view class="" @click.stop="funPreviewImg(moreInfo.wGpersExtendList[0].persMaterialList, index)"  v-if="item.type=='WG-ZF-01'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index">
+							<image class="img" :src="baseUrl+item.url"></image>
+							<view @tap.stop="handleDelImgOne(item.id)" class="cuIcon-roundclosefill" style="position: relative;top: -365upx;text-align: right;font-size: 40upx;color: red;"></view>
+						</view>		
+						<!-- <view class="del-img" @click.stop="handleDelImg('zf')">删除</view> -->
 						<view class="upload-img" @click.stop="funLoad('zf')">上传</view>
 						<!-- <view class="title" style="margin-top: 40upx;">后</view> -->
 						<!-- <image class="img" :src="baseUrl+item.url" v-if="item.type=='WG-ZF-02'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image> -->
@@ -242,8 +257,12 @@
 					<view class="img-box">
 						<view class="s-title">厨房</view>
 						<!-- <view class="title">前</view> -->
-						<image class="img" @click.stop="funPreviewImg(moreInfo.wGpersExtendList[0].persMaterialList, index)" :src="baseUrl+item.url" v-if="item.type=='WG-CF-01'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image>
-						<view class="del-img" @click.stop="handleDelImg('cf')">删除</view>
+						<view class="" @click.stop="funPreviewImg(moreInfo.wGpersExtendList[0].persMaterialList, index)"  v-if="item.type=='WG-CF-01'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index">
+							<image class="img" :src="baseUrl+item.url"></image>
+							<view @tap.stop="handleDelImgOne(item.id)" class="cuIcon-roundclosefill" style="position: relative;top: -365upx;text-align: right;font-size: 40upx;color: red;"></view>
+						</view>
+						
+						<!-- <view class="del-img" @click.stop="handleDelImg('cf')">删除</view> -->
 						<view class="upload-img" @click.stop="funLoad('cf')">上传</view>
 						<!-- <view class="title" style="margin-top: 40upx;">后</view> -->
 						<!-- <image class="img" :src="baseUrl+item.url" v-if="item.type=='WG-CF-02'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image> -->
@@ -251,8 +270,11 @@
 					<view class="img-box">
 						<view class="s-title">卫生间</view>
 						<!-- <view class="title">前</view> -->
-						<image class="img" @click.stop="funPreviewImg(moreInfo.wGpersExtendList[0].persMaterialList, index)" :src="baseUrl+item.url" v-if="item.type=='WG-WS-01'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image>
-						<view class="del-img" @click.stop="handleDelImg('wsj')">删除</view>
+						<view class="" @click.stop="funPreviewImg(moreInfo.wGpersExtendList[0].persMaterialList, index)"  v-if="item.type=='WG-WS-01'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index">
+							<image class="img" :src="baseUrl+item.url"></image>
+							<view @tap.stop="handleDelImgOne(item.id)" class="cuIcon-roundclosefill" style="position: relative;top: -365upx;text-align: right;font-size: 40upx;color: red;"></view>
+						</view>
+						<!-- <view class="del-img" @click.stop="handleDelImg('wsj')">删除</view> -->
 						<view class="upload-img" @click.stop="funLoad('wsj')">上传</view>
 						<!-- <view class="title" style="margin-top: 40upx;">后</view> -->
 						<!-- <image class="img" :src="baseUrl+item.url" v-if="item.type=='WG-WS-02'" v-for="(item,index) in moreInfo.wGpersExtendList[0].persMaterialList" :key="index"></image> -->
@@ -267,8 +289,11 @@
 					</view>
 					<view class="img-box">
 						<view class="s-title">搬迁</view>
-						<image class="img" @click.stop="funPreviewImg(moreInfo.yBpersExtendList[0].persMaterialList, index)" :src="baseUrl+item.url" v-if="item.type=='YB—01'" v-for="(item,index) in moreInfo.yBpersExtendList[0].persMaterialList" :key="index"></image>
-						<view class="del-img" @click.stop="handleDelImg('bq')">删除</view>
+						<view class="" @click.stop="funPreviewImg(moreInfo.yBpersExtendList[0].persMaterialList, index)"  v-if="item.type=='YB—01'" v-for="(item,index) in moreInfo.yBpersExtendList[0].persMaterialList" :key="index">
+							<image class="img" :src="baseUrl+item.url"></image>
+							<view @tap.stop="handleDelImgOne(item.id)" class="cuIcon-roundclosefill" style="position: relative;top: -365upx;text-align: right;font-size: 40upx;color: red;"></view>
+						</view>
+						<!-- <view class="del-img" @click.stop="handleDelImg('bq')">删除</view> -->
 						<view class="upload-img" @click.stop="funLoad('bq')">上传</view>
 					</view>
 					<!-- <view class="img-box">
@@ -301,13 +326,19 @@
 				<image class="close" @click="close" src="../../static/close.png"></image>
 			</view>
 		</view>
+		<kd-preview-image v-model="show" :images="urlstring" :current="urlIndex"></kd-preview-image>
 	</view>
 </template>
 
 <script>
+	import Cookies from 'js-cookie'
 	import {apps} from '../../utils/services.js'
 	import {baseUrl, uploadUrl}from '../../utils/request.js'
+	import KdPreviewImage from "@/components/kd-preview-image/kd-preview-image" // 将文件引入项目中
 	export default {
+		components:{
+		    KdPreviewImage
+		},
 		data() {
 			return {
 				title: 'Hello',
@@ -339,12 +370,19 @@
 				uploadUrl: uploadUrl,
 				// 图片上传暂时的数组长度
 				imgNumList: [],
+				urlObj:{},
+				urlId:'',
+				show:false,
+				urlstring:[],
+				urlIndex:0
 			}
 		},
 		onLoad() {
-			uni.removeStorageSync('Authorization')
 			
+			// uni.removeStorageSync('Authorization')
 			let url = window.location.search;
+			this.urlObj=window.location
+			console.log(this.urlObj,'this.urlObj.origin')
 			let theRequest = new Object();
 			if (url.indexOf("?") != -1) {
 			let str = url.substr(1);
@@ -355,9 +393,16 @@
 			}
 			this.userId=theRequest.id;
 			// this.userId = '322a9d4d45a147a080e257e6b87754cf';
-			if(theRequest.token){
-				uni.setStorageSync('Authorization',theRequest.token)
-			}
+			// if(theRequest.token){
+			// 	let  in60Minutes  =  1 / 24 ;
+			// 	Cookies.set('Authorization',theRequest.token,{ 
+			// 		expires:in60Minutes 
+			// 	})
+			// 	window.close(); 
+			// 	window.location.href=this.urlObj.origin+this.urlObj.pathname+'?id='+this.urlId+this.urlObj.hash
+			// 	uni.setStorageSync('Authorization',theRequest.token)
+			// }
+			this.urlId=theRequest.id
 			this.getBaseInfo(theRequest.id)
 			// this.getBaseInfo('322a9d4d45a147a080e257e6b87754cf')
 			// if(uni.getStorageSync('Authorization')){
@@ -378,10 +423,11 @@
 								title:'登陆超时请重新登录',
 								icon:'none'
 							})
-							uni.removeStorageSync('Authorization')
+							Cookies.remove('Authorization');
+							// uni.removeStorageSync('Authorization')
 						}else{
 							uni.showToast({
-								title:'加载数据失败',
+								title:res.msg,
 								icon:'none'
 							})
 						}
@@ -423,10 +469,12 @@
 								title:'登陆超时请重新登录',
 								icon:'none'
 							})
-							uni.removeStorageSync('Authorization')
+							Cookies.remove('Authorization');
+							this.showLogin = true
+							// uni.removeStorageSync('Authorization')
 						}else{
 							uni.showToast({
-								title:'加载数据失败',
+								title:res.msg,
 								icon:'none'
 							})
 						}
@@ -437,12 +485,11 @@
 				this.showLogin = false
 			},
 			toLogin() {
-				if(uni.getStorageSync('Authorization')){
+				if(Cookies.get('Authorization')){
 					this.getMoreInfo(this.userId)
 				}else{
 					this.showLogin = true
 				}
-				// this.showLogin = true
 			},
 			login() {
 				if(this.user.trim()==''){
@@ -466,7 +513,11 @@
 							title:'登录成功',
 							icon:'none'
 						})
-						uni.setStorageSync('Authorization',res.token)
+						let  in60Minutes  =  1 / 24 ;
+						Cookies.set('Authorization',res.token,{ 
+							expires:in60Minutes 
+						})
+						// uni.setStorageSync('Authorization',res.token)
 						this.getMoreInfo(this.userId)
 					}else{
 						uni.showToast({
@@ -511,19 +562,22 @@
 				urlList.map( item => {
 					urls.push(this.baseUrl + item.url);
 				});
-				uni.previewImage({
-					current: index,
-				            urls: urls,
-				            longPressActions: {
-				                itemList: ['发送给朋友', '保存图片', '收藏'],
-				                success: function(data) {
-				                    console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
-				                },
-				                fail: function(err) {
-				                    console.log(err.errMsg);
-				                }
-				            }
-				        });
+				this.urlIndex=index
+				this.urlstring=urls
+				this.show=true
+				// uni.previewImage({
+				// 	current: index,
+				//             urls: urls,
+				//             longPressActions: {
+				//                 itemList: ['发送给朋友', '保存图片', '收藏'],
+				//                 success: function(data) {
+				//                     console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
+				//                 },
+				//                 fail: function(err) {
+				//                     console.log(err.errMsg);
+				//                 }
+				//             }
+				//         });
 			},
 			// 删除图片
 			handleDelImg(type) {
@@ -547,13 +601,34 @@
 				if(info.type == 2) {//异地搬迁户
 					pType = 'YB—01'; 
 				}
-				console.log('apps:', apps);
 				apps.delpictures({type: pType, subject: this.moreInfo.wGpersExtendList[0].id}).then( res => {
 						this.getMoreInfo(this.userId)
 						uni.showToast({
 							title:'操作成功',
 							icon:'none'
 						})
+				}).catch(()=>{
+					uni.showToast({
+						title:'操作失败',
+						icon:'none'
+					})
+				})
+			},
+			//删除图片-单删
+			handleDelImgOne(id){
+				apps.delImgOne(id).then(res=>{
+					if(res.code==200){
+						this.getMoreInfo(this.userId);
+						uni.showToast({
+							title:'操作成功',
+							icon:'none'
+						})
+					}else{
+						uni.showToast({
+							title:'操作失败',
+							icon:'none'
+						})
+					}			
 				}).catch(()=>{
 					uni.showToast({
 						title:'操作失败',
@@ -573,11 +648,9 @@
 				    // sourceType: ['album'], //从相册选择
 				    success: function (res) {
 						this.imgNumList = [];
-						console.log(res.tempFilePaths);
 						res.tempFilePaths.map(url => {
 							that.funUploadImgToServer(url, res.tempFilePaths.length, type);
 						});
-				        console.log(JSON.stringify(res.tempFilePaths));
 				    }
 				});
 			},
@@ -598,7 +671,6 @@
 							// 此时图片上传已全部完成
 							that.funLoadToDataBase(type, JSON.parse(uploadFileRes.data));
 						// }
-						console.log(uploadFileRes.data);
 					},
 					fail: (e) => {
 						console.log('error:', e);
@@ -607,7 +679,6 @@
 			},
 			// 更新图片数据
 			funLoadToDataBase(type, url) {
-				console.log('tagbarIndex:', this.tagbarList[this.tagbarIndex]);
 				let info = this.tagbarList[this.tagbarIndex];
 				// {{info.poor?'贫困户':''}}{{info.poor&&info.criticalReform?'/':''}}{{info.criticalReform?'危改户':''}}{{info.criticalReform&&info.move?'/':''}}{{info.move?'异地搬迁户':''}}
 				// PK-ZF-01 贫困户住房   PK-CF-01 贫困户厨房  PK-WS-01 贫困户卫生间
@@ -643,7 +714,6 @@
 						url: url.fileName
 					});
 				// });
-				console.log('params:', params)
 				apps.uploadpictures({subject: this.moreInfo.wGpersExtendList[0].id,type: pType, persMaterialList: params}).then( res => {
 						this.imgNumList = [];
 						this.getMoreInfo(this.userId);
@@ -653,6 +723,27 @@
 						icon:'none'
 					})
 				})
+			},
+			logout(){
+				let that = this
+				uni.showModal({
+				    title: '提示',
+				    content: '是否退出登录？',
+				    success: function (res) {
+				        if (res.confirm) {
+				            wx.removeStorageSync('Authorization')
+							that.user='',
+							that.password='',
+							that.moreInfo={},
+							// 图片上传暂时的数组长度
+							that.imgNumList=[],
+							that.isLogin=false,
+							window.location.href=that.urlObj.origin+that.urlObj.pathname+'?id='+that.urlId+that.urlObj.hash
+				        } else if (res.cancel) {
+				            console.log('用户点击取消');
+				        }
+				    }
+				});
 			}
 		}
 	}
@@ -660,7 +751,22 @@
 
 <style lang="scss" scoped>
 	@import '../../static/stylesheet.css';
-
+	.logout{
+		height: 68upx;
+		width: 68upx;
+		border-radius: 50%;
+		background:rgba(58,123,255,1);;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: absolute;
+		top: 30upx;
+		right: 30upx;
+		.logout-img{
+			height: 44upx;
+			width: 44upx;
+		}
+	}
 	//公共样式
 	.flex {
 		display: flex;
@@ -907,6 +1013,7 @@
 							width: 100%;
 							height: 350upx;
 							margin-top: 20upx;
+							position: relative;
 						}
 					}
 				}

@@ -13,6 +13,8 @@ let apps = {
 	uploadpictures: (param) => request.post(`/uploadpictures`, param),
 	// 图片删除
 	delpictures: (param) => request.post(`/delpictures`, param),
+	// 图片删除-单删
+	delImgOne:(param) => request.post(`/delimage/${param}`)
 }
 
 module.exports = {

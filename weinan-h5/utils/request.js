@@ -3,10 +3,10 @@ const baseUrl = 'http://com.dl.house.vaiwan.com';//测试环境
 // const baseUrl = 'http://192.168.1.180:8888';//测试环境
 // const baseUrl = 'https://hcp.ikingtech.info/evaluationMatter'; //生产环境
 // const uploadUrl = "http://192.168.1.100/oss/api/upload/v1" // 上传图片地址
-const uploadUrl = "http://com.dl.house.vaiwan.com/common/upload" // 上传图片地址
-
+// const uploadUrl = "http://com.dl.house.vaiwan.com/common/upload" // 上传图片地址
+const uploadUrl = "http://com.dl.house.vaiwan.com/common/upload"
 const downloadUrl = "http://192.168.1.100/" // 下载图片地址
-
+import Cookies from 'js-cookie'
 
 const defaultMessage = '';
 let showNoLogin = true
@@ -26,7 +26,7 @@ const requestConfig = (url, data, methods, isShowLoading, contentType) => {
 			data: data,
 			header: {
 				'content-type': contentType?contentType:'application/json', // 默认值
-				'Authorization': uni.getStorageSync('Authorization') || ''
+				'Authorization': Cookies.get('Authorization') || ''
 			},
 			method: methods,
 			/**
@@ -41,7 +41,7 @@ const requestConfig = (url, data, methods, isShowLoading, contentType) => {
 							title:'登录超时请重新登录',
 							icon:'none'
 						})
-						uni.removeStorageSync('webToken');
+						Cookies.remove('Authorization');
 					}
 					return;
 				}
