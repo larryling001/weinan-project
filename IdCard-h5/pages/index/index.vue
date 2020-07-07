@@ -428,7 +428,7 @@ export default {
 }
 .statisicsBtn {
 	height: 96upx;
-	background: rgba(45, 125, 255, 1);
+	background: "red";
 	border-radius: 48upx;
 	font-size: 32upx;
 	font-weight: bold;
@@ -565,7 +565,7 @@ export default {
 	width: 100%;
 	height: auto;
 	overflow: hidden;
-	background-color: rgb(46, 137, 255);
+	background-color:#FF0000;
 	padding-bottom: 30upx;
 }
 .id-input-boxs {
@@ -613,7 +613,7 @@ export default {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: rgba(45, 126, 255, 1);
+	background: #FF0000;
 	border-radius: 48upx;
 	color: #ffffff;
 }
@@ -680,7 +680,7 @@ export default {
 		.login-btn {
 			height: 96upx;
 			margin-top: 90upx;
-			background: rgba(45, 125, 255, 1);
+			background: #FF0000;
 			border-radius: 48upx;
 			font-size: 32upx;
 			font-weight: bold;

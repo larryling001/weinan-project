@@ -915,7 +915,7 @@
 	//私有样式
 	.content {
 		font-family: PingFang SC;
-		background-color: rgb(46, 137, 255);
+		background-color: #FF0000;
 		min-height: 100vh;
 		padding-bottom: 40upx;
 
@@ -1020,10 +1020,10 @@
 
 			.show-more {
 				height: 96upx;
-				background: rgb(216, 234, 255);
+				background: #FFFFFF;
 				border-radius: 48upx;
 				margin-top: 20upx;
-				color: #2D7DFF;
+				color: #000000;
 				font-size: 32upx;
 				font-weight: 800;
 			}
@@ -1209,7 +1209,7 @@
 	.del-img {
 		width: 100%;
 		height: 58upx;
-		background-color: #2e89ff;
+		background-color: #FF0000;
 		text-align: center;
 		line-height: 58upx;
 		font-size: 24upx;
@@ -1222,7 +1222,7 @@
 	.upload-img {
 		width: 100%;
 		height: 58upx;
-		background-color: #2e89ff;
+		background-color: #FF0000;
 		text-align: center;
 		line-height: 58upx;
 		font-size: 24upx;
