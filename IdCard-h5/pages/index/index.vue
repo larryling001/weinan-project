@@ -4,36 +4,46 @@
 			<image src="../../static/logout.png" mode="" class="logout-img"></image>
 		</view> -->
 		<view class="header"></view>
-		<view class="idcard-box browse">
+		<view class="idcard-box browse2">
 			<view class="browseTitle" :class="showVillage || showName ? 'flexstyle' : ''">
 				<text class="browseStye">浏览</text>
 				<image src="../../static/back.png" v-if="showVillage || showName" class="browseImage" @click="goback"></image>
 			</view>
-			<view class="browseContent" :class="showcity?'browseContent1':'' ">
-				<text @click="handleShVillage(item)" v-if="showcity" v-for="item in citylist" :key="item">{{ item.substring(0,4) }}</text>
-			</view>
-			<view class="browseContent" v-if="showVillage" :class="showVillage?'browseContent1':'' ">
-				<text @click="handleShowName(item)" v-for="item in villagelist" :key="item">{{ item.substring(0,4) }}</text>
-			</view>
-			<view class="browseContent" v-if="showName" :class="showName?'browseContent1':'' ">
-				<text v-for="item in peoplelist" :key="item.id" @click="handlejumpDetail(item.id)">{{ item.user_name }}</text>
+			<view class="browse">
+				<view class="browseContent" :class="showcity?'browseContent1':'' ">
+					<text @click="handleShVillage(item)" v-if="showcity" v-for="item in citylist" :key="item">{{ item.substring(0,4) }}</text>
+				</view>
+				<view class="browseContent" v-if="showVillage" :class="showVillage?'browseContent1':'' ">
+					<text @click="handleShowName(item)" v-for="item in villagelist" :key="item">{{ item.substring(0,4) }}</text>
+				</view>
+				<view class="browseContent" v-if="showName" :class="showName?'browseContent1':'' ">
+					<text v-for="item in peoplelist" :key="item.id" @click="handlejumpDetail(item.id)">{{ item.user_name }}</text>
+				</view>
 			</view>
 		</view>
 		<view class="idcard-box statisics" :class="showSearch ? 'statisicsSearch' : ''">
 			<view class="statisicsTitle" @click="searchCon">统计</view>
 			<view class="statisicsContent">
-				<view> 
-				<text>累计改造户数：</text> 
-				<text>{{staMessage.peopleNum | filterPeopleNumber}}(户)</text> 
+				<view class="statisicsContent-item">
+					<view class="">
+						<!-- <image src="../../static/home.png" mode=""></image> -->
+						<text>累计改造户数</text> 
+					</view>		
+					<text>{{staMessage.peopleNum | filterPeopleNumber}}(户)</text>
 				</view>
-				<view>
-					<text>累计补助资金：</text>
-					<text>{{staMessage.capital | filterPeopleNumber }}(元)</text>
-					
+				<view class="statisicsContent-item">
+					<view class="">
+						<!-- <image src="../../static/xzz.png" mode=""></image> -->
+						<text>累计补助资金</text>
+					</view>
+					<text>{{staMessage.capital | filterPeopleNumber }}(元)</text>			
 				</view>
-				<view>
-					<text>累计改造面积：</text>
-					<text>{{staMessage.areaMeasure | filterPeopleNumber}}(平方米)</text>
+				<view class="statisicsContent-item">
+					<view class="">
+						<!-- <image src="../../static/xz.png" mode=""></image> -->
+						<text>累计改造面积</text>
+					</view>
+					<text>{{staMessage.areaMeasure | filterPeopleNumber}}(㎡)</text>
 				</view>
 			</view>
 			<view class="staSearch" v-if="showSearch">
@@ -69,9 +79,11 @@
 			</view>
 		</view>
 		<view class="idcard-box">
-			<view class="title">人员搜索</view>
+			<view  style="border-bottom: 1upx solid rgba(0,0,0,0.2);">
+				<view class="title" style="padding-left: 30upx;">人员搜索</view>
+			</view>
 			<view class="id-input-boxs">
-				<view class="id-input-box" style="display: flex;align-items: center;">
+				<view class="id-input-box" style="display: flex;align-items: center;margin-top:50upx;">
 					<image src="../../static/card.png" mode="" style="height: 40upx;width: 53upx;"></image>
 					<input type="text" v-model="IdNumber" placeholder="请输入身份证号" class="IdCard" @blur="IDrules" />
 				</view>
@@ -79,6 +91,7 @@
 			<view class="IdSearch margin-30" @click="jumpDetail">搜索</view>
 			<!-- <button class="" size="mini" type="primary" ></button> -->
 		</view>
+		<!-- v-if="showLogin" -->
 		<view class="modle" v-if="showLogin">
 			<view class="login-box">
 				<view class="login-top-box"><view class="login-top-title flex flex-j-c flex-a-c" style="font-size: 40upx;">登录</view></view>
@@ -428,51 +441,74 @@ export default {
 }
 .statisicsBtn {
 	height: 96upx;
-	background: "red";
 	border-radius: 48upx;
 	font-size: 32upx;
 	font-weight: bold;
 	color: rgba(255, 254, 254, 1);
 	margin-top: 40upx;
 	margin-bottom: 40upx;
+	background-color:#FF0000;
+	margin-right: 30upx;
+	margin-left: 30upx;
 }
 .staSearchContent {
 	display: flex;
 	margin-bottom: 15upx;
 	justify-content: space-between;
+	padding: 0 30upx;
+	font-size: 32upx;
+	font-weight: 600;
 }
 // 搜索条件
 .staSearch {
 	margin-top: 40upx;
+	margin-bottom: 40upx;
 	opacity: 0;
 }
 // 统计样式
 .statisics {
 	overflow: hidden;
 	margin-bottom: 30upx !important;
-	padding: 30upx;
 	box-sizing: border-box;
-	height: 296upx !important;
+	height: 280upx !important;
 	transition: all 1s;
 	.statisicsTitle {
-		margin-bottom: 15upx;
-		text-align: center;
+		padding: 20upx 0 20upx 30upx;
+		text-align: left;
+		color: #333333;
+		font-weight: 600;
+		border-bottom: 1px solid rgba(0,0,0,0.2);
 	}
 	.statisicsContent {
-		view{
-			display: flex;
+		padding: 30upx 30upx 30upx 30upx ;
+		display: flex;
+		justify-content: space-around;
+		.statisicsContent-item{
+			font-weight: 600;
+			color: #333333;
+			border: 1px solid rgba(0,0,0,0.2);
+			padding:10upx 10upx;
+			border-radius: 8upx;
+			view{
+				display: flex;
+			}
 		}
 		text {
 			display: block;
 			text-align: center;
-			margin-bottom: 15upx;
-			font-size: 32upx;
+			font-size: 28upx;
+		}
+		image{
+			height: 32upx;
+			width: 32upx;
+			margin-top: 8upx;
+			margin-right: 10upx;
 		}
 	}
 }
 .statisicsSearch {
 	transition: all .5s;
-	height: 730upx !important;
+	height: 770upx !important;
 	.staSearch{
 		transition: all .5s;
 		opacity: 1;
@@ -480,10 +516,10 @@ export default {
 }
 // 浏览样式
 .browse {
-	margin-bottom: 30upx !important;
-	padding: 0 30upx;
+	padding: 30upx 30upx 0 30upx;
 	box-sizing: border-box;
 	overflow: hidden;
+	color: #333333;
 	.browseTitle {
 		text-align: center;
 		color: black ;
@@ -500,6 +536,57 @@ export default {
             display: block;
 			position: absolute;
 			right: 0;
+			top: 20upx;
+			width: 50upx;
+			height: 50upx;
+		}
+	}
+	.browseContent {
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+		overflow: hidden;
+		overflow-y: auto;
+		font-weight: 700;
+		text {
+			width: 214upx;
+			text-align: center;
+			margin-bottom: 15upx;
+			font-size: 32upx;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+	}
+	.browseContent1{
+		height: 286upx;
+	}
+}
+// 浏览样式
+.browse2 {
+	margin-bottom: 30upx !important;
+	box-sizing: border-box;
+	overflow: hidden;
+	color: #333333;
+	.browseTitle {
+		display: flex;
+		color: black ;
+		width: 100%;
+		display: block;
+		overflow: hidden;
+		position: relative;
+		border-bottom: 1px solid rgba(0,0,0,0.2);
+		font-weight: bold;
+		.browseStye{
+			display: inline-block;
+		    margin-top: 20upx;
+			margin-bottom: 20upx;
+			margin-left: 30upx;
+		}
+		.browseImage{
+            display: block;
+			position: absolute;
+			right: 30upx;
 			top: 20upx;
 			width: 50upx;
 			height: 50upx;
@@ -576,18 +663,18 @@ export default {
 .idcard-box {
 	background-color: #ffffff;
 	margin: 0 25upx;
-	background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(216, 234, 255, 1) 100%);
 	border-radius: 8upx;
 	height: 420upx;
 }
 .title {
-	font-size: 32upx;
-	font-weight: bold;
 	color: rgba(0, 0, 0, 1);
-	height: 120upx;
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	// justify-content: center;
+	font-size: 38upx;
+	font-weight: 600;
+	color: #333333;
+	padding: 20upx 0upx;
 }
 .IdNumber {
 	font-size: 30upx;
@@ -620,9 +707,8 @@ export default {
 .header {
 	width: 100%;
 	height: 484upx;
-	background-color: rgb(46, 137, 255);
 	background-image: url(../../static/top.png);
-	background-size: cover;
+	background-size: 100% 100%;
 }
 .modle {
 	height: 100vh;

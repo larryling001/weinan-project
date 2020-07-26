@@ -8,78 +8,77 @@
 			<view class="base-info">
 				<view class="top flex flex-j-bw">
 					<view class="no-box">
-						<view class="no flex flex-j-c flex-a-c text-bold">
-							No.{{info.dataReserveTw}}
-						</view>
-					</view>
-					<view class="avatar">
-						<image @click="handleImgAvator(info.headPortrait)" :src="info.headPortrait" mode=""></image>
+						<image class="no-pic" src="../../static/no1.png" mode=""></image>
 					</view>
 				</view>
 				<view class="main">
 					<view class="row flex">
-						<view class="col">
+						<view class="col" style="text-align: center;width: 100%;padding: 0;margin: 0;">
+							<view class="contnet" style="color: #FF0000;font-size: 48upx;">
+								{{info.userName}}
+							</view>
 							<view class="title">
 								姓名
 							</view>
-							<view class="contnet">
-								{{info.userName}}
-							</view>
 						</view>
-						<view class="col">
-							<view class="title">
-								身份类别
-							</view>
+					</view>
+					<view class="row flex">
+						<view class="col">	
 							<view class="contnet">
 								{{info.poor?'贫困户':''}}{{info.poor&&info.criticalReform?'/':''}}{{info.criticalReform?'危改户':''}}{{info.criticalReform&&info.move?'/':''}}{{info.move?'异地搬迁户':''}}
 							</view>
-						</view>
-					</view>
-					<view class="row flex">
-						<view class="col">
 							<view class="title">
-								市
+								身份类别
 							</view>
+						</view>
+						<view class="col">		
 							<view class="contnet">
 								{{info.city}}
 							</view>
-						</view>
-						<view class="col">
 							<view class="title">
-								区县
+								市
 							</view>
+						</view>
+					</view>
+					<view class="row flex">
+						
+						<view class="col">
 							<view class="contnet">
 								{{info.county}}
 							</view>
-						</view>
-					</view>
-					<view class="row flex">
-						<view class="col">
 							<view class="title">
-								乡镇
+								区县
 							</view>
+						</view>
+						<view class="col">
 							<view class="contnet">
 								{{info.township}}
 							</view>
-						</view>
-						<view class="col">
 							<view class="title">
-								村民委员会
-							</view>
-							<view class="contnet">
-								{{info.villageCommittee}}
+								乡镇
 							</view>
 						</view>
 					</view>
-					<view class="row flex">
+					<view class="row flex">		
 						<view class="col">
-							<view class="title">
-								家庭人口数
+							<view class="contnet">
+								{{info.villageCommittee}}
 							</view>
+							<view class="title">
+								村民委员会
+							</view>
+						</view>
+						<view class="col">			
 							<view class="contnet">
 								{{info.peopleNum || '1'}}人
 							</view>
+							<view class="title">
+								家庭人口数
+							</view>
 						</view>
+					</view>
+					<!-- <view class="row flex">
+						
 						<view class="col">
 							<view class="title">
 								联系方式
@@ -88,7 +87,7 @@
 								{{info.dataReserveFo || '--'}}
 							</view>
 						</view>
-					</view>
+					</view> -->
 				</view>
 			</view>
 			<view class="policy">
@@ -96,7 +95,13 @@
 					政策依据
 				</view>
 				<view class="policy-content">
-					{{info.dataReserveO?info.dataReserveO:'暂无依据'}}
+					{{info.dataReserveO?info.dataReserveO:''}}
+					<view class="no-yj" v-if="!info.dataReserveO">
+						<image src="../../static/no-yj.png" mode=""></image>
+						<view class="">
+							暂无依据
+						</view>
+					</view>
 				</view>
 			</view>
 			<view class="show-more flex flex-j-c flex-a-c" @click="toLogin" v-if="!isLogin">
@@ -116,37 +121,37 @@
 						</view>
 						<view class="row flex">
 							<view class="col">
-								<view class="title">
-									贫困属性
-								</view>
 								<view class="contnet">
 									{{moreInfo.pKpersExtendList[0].pAttribute?moreInfo.pKpersExtendList[0].pAttribute:'无'}}
 								</view>
+								<view class="title">
+									贫困属性
+								</view>
 							</view>
 							<view class="col">
-								<view class="title">
-									致贫原因
-								</view>
 								<view class="contnet">
 									{{moreInfo.pKpersExtendList[0].pReason?moreInfo.pKpersExtendList[0].pReason:'无'}}
+								</view>
+								<view class="title">
+									致贫原因
 								</view>
 							</view>
 						</view>
 						<view class="row flex">
 							<view class="col">
-								<view class="title">
-									脱贫状态
-								</view>
 								<view class="contnet">
 									{{moreInfo.pKpersExtendList[0].pStatus?moreInfo.pKpersExtendList[0].pStatus:'无'}}
 								</view>
+								<view class="title">
+									脱贫状态
+								</view>
 							</view>
 							<view class="col">
-								<view class="title">
-									脱贫年度
-								</view>
 								<view class="contnet">
 									{{moreInfo.pKpersExtendList[0].pTime?moreInfo.pKpersExtendList[0].pTime:'无'}}
+								</view>
+								<view class="title">
+									脱贫年度
 								</view>
 							</view>
 						</view>
@@ -203,96 +208,97 @@
 							危改户
 						</view>
 						<view class="row flex">
-							<view class="col">
-								<view class="title">
-									改造原因
-								</view>
+							<view class="col">	
 								<view class="contnet">
 									{{moreInfo.wGpersExtendList[0].gReason?moreInfo.wGpersExtendList[0].gReason:'无'}}
 								</view>
+								<view class="title">
+									改造原因
+								</view>
 							</view>
 							<view class="col">
-								<view class="title">
-									列入计划的年度
-								</view>
 								<view class="contnet">
 									{{moreInfo.wGpersExtendList[0].gPlanTime?moreInfo.wGpersExtendList[0].gPlanTime:'无'}}
 								</view>
+								<view class="title">
+									列入计划的年度
+								</view>
 							</view>
 						</view>
 						<view class="row flex">
 							<view class="col">
-								<view class="title">
-									资金补助类型
-								</view>
 								<view class="contnet">
 									{{moreInfo.wGpersExtendList[0].gCapitalType?moreInfo.wGpersExtendList[0].gCapitalType:'无'}}
 								</view>
+								<view class="title">
+									资金补助类型
+								</view>
 							</view>
 							<view class="col">
-								<view class="title">
-									改造状态
-								</view>
+								
 								<view class="contnet">
 									{{moreInfo.wGpersExtendList[0].gTransStatus?moreInfo.wGpersExtendList[0].gTransStatus:'无'}}
 								</view>
+								<view class="title">
+									改造状态
+								</view>
 							</view>
 						</view>
 						<view class="row flex">
 							<view class="col">
-								<view class="title">
-									危改类型
-								</view>
+								
 								<view class="contnet">
 									{{moreInfo.renovated?moreInfo.renovated:'无'}}
 								</view>
-							</view>
-							<view class="col">
 								<view class="title">
-									面积
+									危改类型
 								</view>
+							</view>
+							<view class="col">		
 								<view class="contnet">
 									{{moreInfo.area?moreInfo.area:'无'}}
 								</view>
+								<view class="title">
+									面积
+								</view>
 							</view>
 						</view>
 						<view class="row flex">
 							<view class="col">
-								<view class="title">
-									其他危改房面积
-								</view>
+								
 								<view class="contnet">
 									{{moreInfo.otherRenovatedArea ?moreInfo.otherRenovatedArea :'无'}}
 								</view>
+								<view class="title">
+									其他危改房面积
+								</view>
 							</view>
 							<view class="col">
-								<view class="title">
-									卫生间类型
-								</view>
+								
 								<view class="contnet">
 									{{moreInfo.kitchen ?moreInfo.kitchen:'无'}}
+								</view>
+								<view class="title">
+									卫生间类型
 								</view>
 							</view>
 						</view>
 						<view class="row flex">
-							<view class="col">
-								<view class="title">
-									卫生间类型
-								</view>
+							<view class="col">				
 								<view class="contnet">
 									{{moreInfo.toilet?moreInfo.toilet:'无'}}
 								</view>
+								<view class="title">
+									卫生间类型
+								</view>
 							</view>
 							<view class="col">
-								<view class="title">
-
-								</view>
 								<view class="contnet">
-
+								</view>
+								<view class="title">
 								</view>
 							</view>
 						</view>
-
 					</view>
 					<view class="remark-box">
 						<view class="s-title">说明</view>
@@ -922,9 +928,9 @@
 		.header {
 			width: 100%;
 			height: 484upx;
-			background-color: rgb(46, 137, 255);
+			background-color: #FF0000;
 			background-image: url(../../static/top.png);
-			background-size: cover;
+			background-size: 100% 100%;
 		}
 
 		.info {
@@ -934,22 +940,26 @@
 				// height: 800upx;
 				background: linear-gradient(to bottom, rgba(216, 234, 255, 1) 0%, rgba(255, 255, 255, 1) 100%);
 				border-radius: 16upx;
-				padding: 0 28upx 80upx 28upx;
+				padding: 0 28upx 0upx 28upx;
 
 				.top {
 					.no-box {
 						width: 200upx;
 						height: 80upx;
-						background-color: #000000;
 						border-radius: 100upx;
 						margin-top: 30upx;
-
+						margin-left: -28upx;
 						.no {
 							width: 200upx;
 							height: 80upx;
 							border-radius: 100upx;
 							font-size: 40upx;
 							color: #C3AD87;
+							
+						}
+						.no-pic{
+							height: 52upx;
+							width: 102upx;
 						}
 					}
 
@@ -970,28 +980,31 @@
 				}
 
 				.main {
-					margin: 28upx 0 48upx 0;
+					margin: 0upx 0 20upx 0;
 
 					.row {
+						min-height: 150upx;
+						
 						.col:first-child {
-							width: 50%;
+							width: 40%;
+							margin-left: 10%;
 						}
 
 						.col:last-child {
-							width: 48%;
-							margin-left: 18upx;
+							width: 40%;
+							padding-left: 5%;
+							margin-left: 18%;
 						}
 
 						.col {
 							.title {
 								color: #959595;
-								font-size: 28upx;
+								font-size: 26upx;
 							}
 
 							.contnet {
-								font-size: 40upx;
+								font-size: 32upx;
 								font-weight: bold;
-								min-height: 120upx;
 							}
 						}
 					}
@@ -999,22 +1012,34 @@
 			}
 
 			.policy {
-				padding: 0 28upx 100upx 28upx;
 				background-color: #ffffff;
 				border-radius: 16upx;
 				margin-top: 20upx;
 
 				.title {
 					font-size: 32upx;
-					padding-top: 40upx;
-					// padding: 40upx 49upx;
+					padding: 20upx 40upx 20upx 28upx;
+					font-weight: 600;
+					border-bottom: 1px solid rgba(0,0,0,0.2);
 				}
 
 				.policy-content {
+					padding: 0 28upx 100upx 28upx;
 					font-size: 40upx;
 					font-weight: bold;
 					color: #656565;
 					margin-top: 40upx;
+					.no-yj{
+						text-align: center;
+						image{
+							width: 200upx;
+							height: 126upx;
+						}
+						view{
+							font-size: 24upx;
+							color: #9da8c4;
+						}
+					}
 				}
 			}
 
@@ -1067,25 +1092,26 @@
 						background: rgba(255, 255, 255, 1);
 
 						.row {
+							min-height: 120upx;
 							.col:first-child {
-								width: 50%;
+								width: 40%;
+								padding-left: 5%;
 							}
 
 							.col:last-child {
-								width: 48%;
-								margin-left: 18upx;
+								width: 40%;
+								margin-left: 30%;
 							}
 
 							.col {
 								.title {
 									color: #959595;
-									font-size: 28upx;
+									font-size: 26upx;
 								}
 
 								.contnet {
-									font-size: 40upx;
+									font-size: 32upx;
 									font-weight: bold;
-									min-height: 120upx;
 								}
 							}
 						}
@@ -1096,11 +1122,11 @@
 						background: rgba(255, 255, 255, 1);
 						border-radius: 16upx;
 						margin-top: 20upx;
-
 						.title {
 							font-size: 40upx;
 							font-weight: bold;
 							color: #656565;
+							margin-left: 28upx;
 						}
 					}
 
@@ -1186,7 +1212,7 @@
 				.login-btn {
 					height: 96upx;
 					margin-top: 90upx;
-					background: rgba(45, 125, 255, 1);
+					background: #FF0000;
 					border-radius: 48upx;
 					font-size: 32upx;
 					font-weight: bold;
